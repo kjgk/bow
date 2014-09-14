@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="no-js" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>后勤服务中心管理后台</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp,app}) styles/vendor.css -->
+    
+
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp,app}) styles/admin.css -->
+    <link rel="stylesheet" type="text/css" href="styles/admin.css" />
+    <!-- endbuild -->
+
+    <!-- build:js scripts/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--顶部开始-->
+    <div class="top"><span class="left"><img src="images/logo.png" width="435" height="62" /></span><span class="right jg_up">您好，<span class="ahong">系统管理员</span>&nbsp;|&nbsp;<a href="#" class="alan">安全退出</a></span></div>
+    <!--顶部结束-->
+
+    <!--菜单开始-->
+    <div class="menu_zong">
+        <div class="menu_left"></div>
+        <div class="menu_center">
+            <a href="食堂菜谱01.html" class="menu_da">食堂菜谱</a>
+            <a href="接待点餐01.html" class="menu_da">接待点餐</a>
+            <a href="机票预订01.html" class="menu_da">机票预订</a>
+            <a href="meeting.html" class="menu_db">会场预订</a>
+            <a href="意见征求01.html" class="menu_da">意见征求</a>
+        </div>
+        <div class="menu_right"></div>
+        <div class="clear"></div>
+    </div>
+    <!--菜单结束-->
+
+    <div ui-view></div>
+
+    <!--底部-->
+    <div class="bottom">技术支持：上海交大慧谷通用技术有限公司</div>
+
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/angular-uuid4/angular-uuid4.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script src="scripts/admin/app.js"></script>
+    <script src="scripts/admin/base.js"></script>
+    <script src="scripts/admin/meetingroom/MeetingRoom.js"></script>
+    <!--<script src="scripts/admin/meetingroom/MeetingRoomService-local.js"></script>-->
+    <script src="scripts/admin/meetingroom/MeetingRoomService.js"></script>
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automaticaly converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+  </body>
+</html>
