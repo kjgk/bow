@@ -13,22 +13,20 @@
                 <th>会场名字</th>
                 <th>楼层</th>
                 <th>容纳人数</th>
-                <th>使用时间</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="x in grid.data">
-                <td>{{x.createTime|$date}}</td>
+                <td>{{x.createDate|$date}}</td>
                 <td>{{x.name}}</td>
                 <td>{{x.floor+'楼'}}</td>
-                <td>{{x.capacity+'人'}}</td>
-                <td>{{x.lock}}</td>
+                <td>{{x.personNum+'人'}}</td>
                 <td class="caozuo">
-                    <img ng-show="!x.lock" src="../images/btn_04.png" ng-click="toggleLock(x)"/>
-                    <img ng-show="x.lock" src="../images/btn_05.png" ng-click="toggleLock(x)"/>
+                    <!--<img ng-show="!x.lock" src="../images/btn_04.png" ng-click="toggleLock(x)"/>-->
+                    <!--<img ng-show="x.lock" src="../images/btn_05.png" ng-click="toggleLock(x)"/>-->
                     <img src="../images/btn_03.png" ng-click="updateMeetingRoom(x)"/>
-                    <img src="../images/btn_07.png" ng-click="removeMeetingRoom(x)"/>
+                    <img src="../images/btn_07.png" ng-click="deleteMeetingRoom(x)"/>
                 </td>
             </tr>
             </tbody>

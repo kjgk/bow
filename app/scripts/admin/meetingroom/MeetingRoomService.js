@@ -7,16 +7,17 @@ angular.module('admin.meetingroom')
         var me = {
 
             getMeetingRoom: function (id) {
-                var defer = $q.defer();
-                $timeout(function () {
-                    defer.resolve(_.where(localStorageService.get('meetingRoomList') || [], {id: id})[0]);
+                return $http({
+                    method: 'GET',
+                    params: {'meeting.id': id},
+                    url: 'lsc/admin/meeting/ajax/meetingAdminAction!getMeetingInfo.shtml'
                 });
-                return defer.promise;
             },
 
             getMeetingRoomList: function (params) {
                 return $http({
                     method: 'GET',
+                    params: params,
                     url: 'lsc/admin/meeting/ajax/meetingAdminAction!getMeetingPageList.shtml'
                 });
             },
@@ -26,27 +27,36 @@ angular.module('admin.meetingroom')
                     method: 'POST',
                     url: 'lsc/admin/meeting/ajax/meetingAdminAction!saveMeeting.shtml',
                     params: {
-                        'meetingInfo.name': x.name,
-                        'meetingInfo.floor': x.floor,
-                        'meetingInfo.personNum': x.personNum
+                        'meeting.name': x.name,
+                        'meeting.floor': x.floor,
+                        'meeting.personNum': x.personNum,
+                        'meeting.description': x.description
                     }
                 });
             },
 
             updateMeetingRoom: function (x) {
-                var defer = $q.defer();
-                $timeout(function () {
-                    me.getMeetingRoomList().then(function (result) {
-                        _.each(result, function (item) {
-                            if (item.id === x.id) {
-                                _.extend(item, x);
-                            }
-                        });
-                        localStorageService.set('meetingRoomList', result);
-                    });
-                    defer.resolve(true);
+                return $http({
+                    method: 'POST',
+                    url: 'lsc/admin/meeting/ajax/meetingAdminAction!saveMeeting.shtml',
+                    params: {
+                        'meeting.id': x.id,
+                        'meeting.name': x.name,
+                        'meeting.floor': x.floor,
+                        'meeting.personNum': x.personNum,
+                        'meeting.description': x.description
+                    }
                 });
-                return defer.promise;
+            },
+
+            deleteMeetingRoom: function (x) {
+                return $http({
+                    method: 'POST',
+                    url: 'lsc/admin/meeting/ajax/meetingAdminAction!deleteMeeting.shtml',
+                    params: {
+                        'meeting.id': x.id
+                    }
+                });
             },
 
             lockMeetingRoom: function (x) {
@@ -57,19 +67,6 @@ angular.module('admin.meetingroom')
             unlockMeetingRoom: function (x) {
                 x.lock = false;
                 return me.updateMeetingRoom(x);
-            },
-
-            removeMeetingRoom: function (x) {
-                var defer = $q.defer();
-                $timeout(function () {
-                    me.getMeetingRoomList().then(function (result) {
-                        localStorageService.set('meetingRoomList', _.filter(result, function (item) {
-                            return item.id !== x.id;
-                        }));
-                    });
-                    defer.resolve(true);
-                });
-                return defer.promise;
             },
 
             getServiceList: function () {

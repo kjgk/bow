@@ -60,7 +60,7 @@ angular.module('base', ['ui.router', 'LocalStorageModule', 'uuid4'])
                         });
                     },
                     refresh: function () {
-                        self.fetchData();
+                        this.fetchData();
                     },
                     query: function (params) {
                         _.extend(this.params, params);
@@ -75,7 +75,11 @@ angular.module('base', ['ui.router', 'LocalStorageModule', 'uuid4'])
     .filter('$date', function ($filter) {
         return function (input, format) {
             format = format || 'yyyy-MM-dd HH:mm';
-            return $filter('date')(input, format);
+            if (_.isNumber(input)) {
+                return $filter('date')(input, format);
+            } else {
+                return $filter('date')(input.time, format);
+            }
         };
     })
 ;

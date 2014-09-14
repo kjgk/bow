@@ -71,16 +71,10 @@ angular.module('admin.meetingroom', ['base'])
             $state.transitionTo('meetingroom.update', {id: x.id});
         };
 
-        $scope.toggleLock = function (x) {
-            if (x.lock) {
-                MeetingRoomService.unlockMeetingRoom(x).then($scope.grid.refresh);
-            } else {
-                MeetingRoomService.lockMeetingRoom(x).then($scope.grid.refresh);
-            }
-        };
-
-        $scope.removeMeetingRoom = function (x) {
-            MeetingRoomService.removeMeetingRoom(x).then($scope.grid.refresh);
+        $scope.deleteMeetingRoom = function (x) {
+            MeetingRoomService.deleteMeetingRoom(x).then(function(){
+                $scope.grid.refresh();
+            });
         };
     })
 
@@ -98,8 +92,8 @@ angular.module('admin.meetingroom', ['base'])
     .controller('MeetingRoomUpdateCtrl', function ($scope, $state, MeetingRoomService) {
 
         $scope.title = '修改会场';
-        MeetingRoomService.getMeetingRoom($state.params.id).then(function (result) {
-            $scope.meetingRoom = result;
+        MeetingRoomService.getMeetingRoom($state.params.id).then(function (response) {
+            $scope.meetingRoom = response.data;
         });
         $scope.submit = function () {
             MeetingRoomService.updateMeetingRoom($scope.meetingRoom).then(function () {
@@ -130,8 +124,8 @@ angular.module('admin.meetingroom', ['base'])
             }
         };
 
-        $scope.removeMeetingRoom = function (x) {
-            MeetingRoomService.removeMeetingRoom(x).then($scope.grid.refresh);
+        $scope.deleteMeetingRoom = function (x) {
+            MeetingRoomService.deleteMeetingRoom(x).then($scope.grid.refresh);
         };
     })
 
@@ -157,8 +151,8 @@ angular.module('admin.meetingroom', ['base'])
             }
         };
 
-        $scope.removeMeetingRoom = function (x) {
-            MeetingRoomService.removeMeetingRoom(x).then($scope.grid.refresh);
+        $scope.deleteMeetingRoom = function (x) {
+            MeetingRoomService.deleteMeetingRoom(x).then($scope.grid.refresh);
         };
     })
 
