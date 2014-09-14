@@ -2,7 +2,7 @@
 
 angular.module('admin.meeting')
 
-    .factory('MeetingService', function ($q, $timeout, $http, localStorageService, uuid4) {
+    .factory('MeetingService', function ($q, $timeout, $http, localStorageService) {
 
         var me = {
 
@@ -10,7 +10,7 @@ angular.module('admin.meeting')
                 return $http({
                     method: 'GET',
                     params: {'meeting.id': id},
-                    url: 'lsc/admin/meeting/ajax/meetingAdminAction!getMeetingInfo.shtml'
+                    url: '/admin/meeting/ajax/meetingAdminAction!getMeetingInfo.shtml'
                 });
             },
 
@@ -18,14 +18,14 @@ angular.module('admin.meeting')
                 return $http({
                     method: 'GET',
                     params: params,
-                    url: 'lsc/admin/meeting/ajax/meetingAdminAction!getMeetingPageList.shtml'
+                    url: '/admin/meeting/ajax/meetingAdminAction!getMeetingPageList.shtml'
                 });
             },
 
             createMeeting: function (x) {
                 return $http({
                     method: 'POST',
-                    url: 'lsc/admin/meeting/ajax/meetingAdminAction!saveMeeting.shtml',
+                    url: '/admin/meeting/ajax/meetingAdminAction!saveMeeting.shtml',
                     params: {
                         'meeting.name': x.name,
                         'meeting.floor': x.floor,
@@ -38,7 +38,7 @@ angular.module('admin.meeting')
             updateMeeting: function (x) {
                 return $http({
                     method: 'POST',
-                    url: 'lsc/admin/meeting/ajax/meetingAdminAction!saveMeeting.shtml',
+                    url: '/admin/meeting/ajax/meetingAdminAction!saveMeeting.shtml',
                     params: {
                         'meeting.id': x.id,
                         'meeting.name': x.name,
@@ -52,22 +52,13 @@ angular.module('admin.meeting')
             deleteMeeting: function (x) {
                 return $http({
                     method: 'POST',
-                    url: 'lsc/admin/meeting/ajax/meetingAdminAction!deleteMeeting.shtml',
+                    url: '/admin/meeting/ajax/meetingAdminAction!deleteMeeting.shtml',
                     params: {
                         'meeting.id': x.id
                     }
                 });
             },
 
-            lockMeeting: function (x) {
-                x.lock = true;
-                return me.updateMeeting(x);
-            },
-
-            unlockMeeting: function (x) {
-                x.lock = false;
-                return me.updateMeeting(x);
-            },
 
             getServiceList: function () {
                 var defer = $q.defer();

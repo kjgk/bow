@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('base', ['ui.router', 'LocalStorageModule', 'uuid4'])
+angular.module('base', ['ui.router', 'LocalStorageModule', 'uuid4', 'angular-loading-bar'])
 
     .directive('pagination', function () {
         return {
@@ -9,7 +9,7 @@ angular.module('base', ['ui.router', 'LocalStorageModule', 'uuid4'])
             scope: {
                 grid: '=grid'
             }
-        }
+        };
     })
 
     .provider('SimpleGrid', function () {
@@ -68,8 +68,8 @@ angular.module('base', ['ui.router', 'LocalStorageModule', 'uuid4'])
                     }
                 };
                 _.extend(this, self);
-            }
-        }
+            };
+        };
     })
 
     .filter('$date', function ($filter) {
