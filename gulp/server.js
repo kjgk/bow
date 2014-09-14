@@ -16,10 +16,8 @@ var proxy = httpProxy.createProxyServer({
    and forwards dynamic requests to your real backend */
 function proxyMiddleware(req, res, next) {
   if (req.url.indexOf("/lsc") != -1) {
-      console.log("proxy:" + req.url)
       proxy.web(req, res);
   } else {
-      console.log("next:" + req.url)
       next();
   }
 }
