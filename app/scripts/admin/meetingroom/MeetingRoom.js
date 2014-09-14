@@ -25,27 +25,27 @@ angular.module('admin.meetingroom', ['base'])
             })
             .state('meetingroom.unprocessed', {
                 url: '/unprocessed',
-                templateUrl: 'partials/admin/meetingroom/unprocessed.html',
+                templateUrl: 'partials/admin/meetingroom/unprocessed-list.html',
                 controller: 'MeetingRoomUnprocessedListCtrl'
             })
             .state('meetingroom.processed', {
                 url: '/processed',
-                templateUrl: 'partials/admin/meetingroom/processed.html',
+                templateUrl: 'partials/admin/meetingroom/processed-list.html',
                 controller: 'MeetingRoomProcessedListCtrl'
             })
             .state('meetingroom.list', {
                 url: '/list',
-                templateUrl: 'partials/admin/meetingroom/list.html',
+                templateUrl: 'partials/admin/meetingroom/meeting-room-list.html',
                 controller: 'MeetingRoomListCtrl'
             })
             .state('meetingroom.create', {
                 url: '/create',
-                templateUrl: 'partials/admin/meetingroom/form.html',
+                templateUrl: 'partials/admin/meetingroom/meeting-room-form.html',
                 controller: 'MeetingRoomCreateCtrl'
             })
             .state('meetingroom.update', {
                 url: '/update/:id',
-                templateUrl: 'partials/admin/meetingroom/form.html',
+                templateUrl: 'partials/admin/meetingroom/meeting-room-form.html',
                 controller: 'MeetingRoomUpdateCtrl'
             })
             .state('meetingroom.service', {

@@ -6,7 +6,7 @@ var browserSync = require('browser-sync');
 var httpProxy = require('http-proxy');
 
 /* This configuration allow you to configure browser sync to proxy your backend */
-var proxyTarget = 'http://server/context/'; // The location of your backend
+var proxyTarget = 'http://localhost:8082/'; // The location of your backend
 
 var proxy = httpProxy.createProxyServer({
   target: proxyTarget
@@ -15,10 +15,12 @@ var proxy = httpProxy.createProxyServer({
 /* proxyMiddleware forwards static file requests to BrowserSync server
    and forwards dynamic requests to your real backend */
 function proxyMiddleware(req, res, next) {
-  if (/\.(html|css|js|png|jpg|jpeg|gif|ico|xml|rss|txt|eot|svg|ttf|woff)(\?((r|v|rel|rev)=[\-\.\w]*)?)?$/.test(req.url)) {
-    next();
+  if (req.url.indexOf("/lsc") != -1) {
+      console.log("proxy:" + req.url)
+      proxy.web(req, res);
   } else {
-    proxy.web(req, res);
+      console.log("next:" + req.url)
+      next();
   }
 }
 

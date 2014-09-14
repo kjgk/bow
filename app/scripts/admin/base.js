@@ -52,9 +52,10 @@ angular.module('base', ['ui.router', 'LocalStorageModule', 'uuid4'])
                             page: page,
                             pageSize: grid.pageSize
                         });
-                        fetchFn(params).then(function (result) {
-                            grid.data = result.items;
-                            grid.totalPage = Math.ceil(result.totalCount / grid.pageSize);
+                        fetchFn(params).then(function (response) {
+                            var result = response.data;
+                            grid.data = result.rows;
+                            grid.totalPage = Math.ceil(result.total / grid.pageSize);
                             grid.currentPage = page;
                         });
                     },
