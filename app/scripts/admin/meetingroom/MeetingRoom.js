@@ -16,10 +16,10 @@ angular.module('admin.meetingroom', ['base'])
                     ];
                     $scope.checkActive = function (tab) {
                         var state = $state.current.name;
-                        if (state == 'meetingroom.create' || state == 'meetingroom.update') {
+                        if (state === 'meetingroom.create' || state === 'meetingroom.update') {
                             state = 'meetingroom.list';
                         }
-                        return tab.state == state;
+                        return tab.state === state;
                     };
                 }
             })
