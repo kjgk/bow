@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('admin.meetingroom')
+angular.module('admin.meeting')
 
-    .factory('MeetingRoomService', function ($q, $timeout, $http, localStorageService, uuid4) {
+    .factory('MeetingService', function ($q, $timeout, $http, localStorageService, uuid4) {
 
         var me = {
 
-            getMeetingRoom: function (id) {
+            getMeeting: function (id) {
                 return $http({
                     method: 'GET',
                     params: {'meeting.id': id},
@@ -14,7 +14,7 @@ angular.module('admin.meetingroom')
                 });
             },
 
-            getMeetingRoomList: function (params) {
+            getMeetingList: function (params) {
                 return $http({
                     method: 'GET',
                     params: params,
@@ -22,7 +22,7 @@ angular.module('admin.meetingroom')
                 });
             },
 
-            createMeetingRoom: function (x) {
+            createMeeting: function (x) {
                 return $http({
                     method: 'POST',
                     url: 'lsc/admin/meeting/ajax/meetingAdminAction!saveMeeting.shtml',
@@ -35,7 +35,7 @@ angular.module('admin.meetingroom')
                 });
             },
 
-            updateMeetingRoom: function (x) {
+            updateMeeting: function (x) {
                 return $http({
                     method: 'POST',
                     url: 'lsc/admin/meeting/ajax/meetingAdminAction!saveMeeting.shtml',
@@ -49,7 +49,7 @@ angular.module('admin.meetingroom')
                 });
             },
 
-            deleteMeetingRoom: function (x) {
+            deleteMeeting: function (x) {
                 return $http({
                     method: 'POST',
                     url: 'lsc/admin/meeting/ajax/meetingAdminAction!deleteMeeting.shtml',
@@ -59,14 +59,14 @@ angular.module('admin.meetingroom')
                 });
             },
 
-            lockMeetingRoom: function (x) {
+            lockMeeting: function (x) {
                 x.lock = true;
-                return me.updateMeetingRoom(x);
+                return me.updateMeeting(x);
             },
 
-            unlockMeetingRoom: function (x) {
+            unlockMeeting: function (x) {
                 x.lock = false;
-                return me.updateMeetingRoom(x);
+                return me.updateMeeting(x);
             },
 
             getServiceList: function () {

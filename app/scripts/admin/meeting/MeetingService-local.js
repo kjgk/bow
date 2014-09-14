@@ -1,23 +1,23 @@
 'use strict';
 
-angular.module('admin.meetingroom')
+angular.module('admin.meeting')
 
-    .factory('MeetingRoomService', function ($q, $timeout, localStorageService, uuid4) {
+    .factory('MeetingService', function ($q, $timeout, localStorageService, uuid4) {
 
         var me = {
 
-            getMeetingRoom: function (id) {
+            getMeeting: function (id) {
                 var defer = $q.defer();
                 $timeout(function () {
-                    defer.resolve(_.where(localStorageService.get('meetingRoomList') || [], {id: id})[0]);
+                    defer.resolve(_.where(localStorageService.get('meetingList') || [], {id: id})[0]);
                 });
                 return defer.promise;
             },
 
-            getMeetingRoomList: function (params) {
+            getMeetingList: function (params) {
                 var defer = $q.defer();
                 $timeout(function () {
-                    var list = localStorageService.get('meetingRoomList') || [];
+                    var list = localStorageService.get('meetingList') || [];
                     if (params) {
                         var start = (params.page - 1) * params.pageSize;
                         var end = start + params.pageSize;
@@ -33,52 +33,52 @@ angular.module('admin.meetingroom')
                 return defer.promise;
             },
 
-            createMeetingRoom: function (x) {
+            createMeeting: function (x) {
                 var defer = $q.defer();
                 $timeout(function () {
-                    me.getMeetingRoomList().then(function (result) {
+                    me.getMeetingList().then(function (result) {
                         x.id = uuid4.generate();
                         x.createTime = new Date();
                         x.lock = false;
                         result.push(x);
-                        localStorageService.set('meetingRoomList', result);
+                        localStorageService.set('meetingList', result);
                     });
                     defer.resolve(true);
                 });
                 return defer.promise;
             },
 
-            updateMeetingRoom: function (x) {
+            updateMeeting: function (x) {
                 var defer = $q.defer();
                 $timeout(function () {
-                    me.getMeetingRoomList().then(function (result) {
+                    me.getMeetingList().then(function (result) {
                         _.each(result, function (item) {
                             if (item.id === x.id) {
                                 _.extend(item, x);
                             }
                         });
-                        localStorageService.set('meetingRoomList', result);
+                        localStorageService.set('meetingList', result);
                     });
                     defer.resolve(true);
                 });
                 return defer.promise;
             },
 
-            lockMeetingRoom: function (x) {
+            lockMeeting: function (x) {
                 x.lock = true;
-                return me.updateMeetingRoom(x);
+                return me.updateMeeting(x);
             },
 
-            unlockMeetingRoom: function (x) {
+            unlockMeeting: function (x) {
                 x.lock = false;
-                return me.updateMeetingRoom(x);
+                return me.updateMeeting(x);
             },
 
-            removeMeetingRoom: function (x) {
+            removeMeeting: function (x) {
                 var defer = $q.defer();
                 $timeout(function () {
-                    me.getMeetingRoomList().then(function (result) {
-                        localStorageService.set('meetingRoomList', _.filter(result, function (item) {
+                    me.getMeetingList().then(function (result) {
+                        localStorageService.set('meetingList', _.filter(result, function (item) {
                             return item.id !== x.id;
                         }));
                     });

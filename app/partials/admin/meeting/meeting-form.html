@@ -1,31 +1,31 @@
 <!--右边内容-->
 <div class="right_nr">
     <div class="nr_lan">
-        <form name="meetingRoomForm">
+        <form name="meetingForm">
 
             <div class="nr_bq">{{title}}</div>
             <div class="nr_tj"></div>
             <div class="cp_list">
                 <ul>
                     <li>会场名称:
-                        <input type="text" name="name" ng-model="meetingRoom.name">
+                        <input type="text" name="name" ng-model="meeting.name">
                     </li>
                     <li>容纳人数:
-                        <input type="text" name="personNum" ng-model="meetingRoom.personNum">
+                        <input type="text" name="personNum" ng-model="meeting.personNum">
                         人
                     </li>
                     <li>所在楼层:
-                        <input type="text" name="floor" ng-model="meetingRoom.floor">
+                        <input type="text" name="floor" ng-model="meeting.floor">
                         楼
                     </li>
                     <li>备注:
-                        <textarea rows="5" name="description" ng-model="meetingRoom.description"></textarea>
+                        <textarea rows="5" name="description" ng-model="meeting.description"></textarea>
                     </li>
                     <li>上传图片:
                     </li>
                 </ul>
             </div>
-            {{meetingRoom}}
+            {{meeting}}
             <div class="fanye">
                 <input align="absmiddle" type="image" src="images/btn_09.png" value="提交" ng-click="submit()">
             </div>
