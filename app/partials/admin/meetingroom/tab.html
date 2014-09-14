@@ -1,0 +1,9 @@
+<!--内容部分开始-->
+<div class="zongti">
+    <!--左边菜单-->
+    <div class="left_dh">
+        <a ng-repeat="x in tabs" ui-sref="{{x.state}}" class="menu_a" ng-class="{menu_b: checkActive(x)}" ng-bind="x.text"></a>
+    </div>
+    <div ui-view></div>
+</div>
+<!--内容部分结束-->

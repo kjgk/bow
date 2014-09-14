@@ -1,0 +1,42 @@
+<!--右边内容-->
+<div class="right_nr">
+    <div class="nr_lan">
+        <div class="nr_bq">会场管理</div>
+        <div class="nr_tj">
+            <input type="button" value="新增会场" ng-click="createMeetingRoom()">
+        </div>
+
+        <table style="width: 98%;" cellpadding="10" cellspacing="0" align="center" class="biaoge4">
+            <thead>
+            <tr>
+                <th>添加时间</th>
+                <th>会场名字</th>
+                <th>楼层</th>
+                <th>容纳人数</th>
+                <th>使用时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in grid.data">
+                <td>{{x.createTime|$date}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.floor+'楼'}}</td>
+                <td>{{x.capacity+'人'}}</td>
+                <td>{{x.lock}}</td>
+                <td class="caozuo">
+                    <img ng-show="!x.lock" src="../images/btn_04.png" ng-click="toggleLock(x)"/>
+                    <img ng-show="x.lock" src="../images/btn_05.png" ng-click="toggleLock(x)"/>
+                    <img src="../images/btn_03.png" ng-click="updateMeetingRoom(x)"/>
+                    <img src="../images/btn_07.png" ng-click="removeMeetingRoom(x)"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div pagination grid="grid"></div>
+
+    </div>
+</div>
+<!--右边结束-->
+<div class="clear"></div>
