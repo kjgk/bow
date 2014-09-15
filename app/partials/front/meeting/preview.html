@@ -6,16 +6,16 @@
         <table width="98%" border="0" align="center" cellpadding="10" cellspacing="0" class="biaoge2">
             <tr>
                 <td width="100" align="right">会场名称：</td>
-                <td>3楼会议厅</td>
+                <td>{{meeting.name}}</td>
                 <td>目前状态：<span class="ahong">使用中。</span><span class="alan">（至2014-07-30下午空闲）</span></td>
             </tr>
             <tr>
                 <td align="right" valign="top">会场照片：</td>
-                <td colspan="2" align="left"><img src="images/front/ys13.png" width="300" height="141"  alt=""/></td>
+                <td colspan="2" align="left"><img ng-src="{{contextPath + meeting.imgUrl}}" width="300" height="140" alt=""/></td>
             </tr>
             <tr>
                 <td align="right" valign="top">会场说明：</td>
-                <td colspan="2" valign="top">本厅有5米大屏幕显示屏，以及16个，22寸 显示屏，分别能同时展示不同系统，便于开展演 示系统的会议</td>
+                <td colspan="2" valign="top">{{meeting.description}}</td>
             </tr>
         </table>
         <div class="jp_btn"><a href="#/meeting/apply/submit/12"><img src="images/front/btn_03.png"/></a></div>

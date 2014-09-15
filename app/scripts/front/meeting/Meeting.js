@@ -50,29 +50,55 @@ angular.module('front.meeting', ['base'])
 
     .controller('MeetingOverviewCtrl', function ($scope, $filter, $state, SimpleGrid, MeetingService) {
 
-        $scope.date = null;
+        $scope.date = new Date();
 
         $scope.grid = SimpleGrid(MeetingService.queryMeeting, {pageSize: 4});
-
-        $scope.grid.query();
 
         $scope.query = function () {
             $scope.grid.query({
                 date: $scope.date == null ? undefined : $filter('date')($scope.date.getTime(), 'yyyy-MM-dd')
             });
         };
+
+        $scope.query();
     })
 
-    .controller('MeetingPreviewCtrl', function ($scope) {
-
+    .controller('MeetingPreviewCtrl', function ($scope, $state, MeetingService) {
+        MeetingService.getMeeting($state.params.id).then(function (response) {
+            $scope.meeting = response.data;
+        });
     })
 
 
-    .controller('MeetingApplyListCtrl', function ($scope) {
+    .controller('MeetingApplyListCtrl', function ($scope, $state, MeetingService) {
 
     })
 
-    .controller('MeetingApplySubmitCtrl', function ($scope) {
+    .controller('MeetingApplySubmitCtrl', function ($scope, $state, MeetingService) {
 
+        $scope.meetingApply = {
+            applyUserName: '张三',
+            applyUserId: 1,
+            useDateStartType: 3,
+            useDateEndType: 3,
+            meetingService: {}
+        }
+        MeetingService.getServiceList().then(function (response) {
+            $scope.serviceList = response.data;
+            _.each($scope.serviceList, function (item) {
+                $scope.meetingApply.meetingService[item.id] = false;
+            })
+        });
+        MeetingService.getMeeting($state.params.id).then(function (response) {
+            $scope.meeting = response.data;
+            $scope.meetingApply.meetingId = $scope.meeting.id;
+            $scope.meetingApply.meetingName = $scope.meeting.name;
+        });
+
+        $scope.submit = function(){
+
+            MeetingService.submitMeetingApply($scope.meetingApply).then(function () {
+            });
+        }
     })
 ;

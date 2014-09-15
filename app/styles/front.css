@@ -171,11 +171,12 @@ hr{ color:#ccc;border-bottom:1px solid #ccc;}
 .hca_l { width:230px; height:166px; float:left; margin:8px 20px 0px 7px;}
 .hca_l img { border:1px solid #aeaeae;width:228px; height:164px; }
 .hca_r { float:left;}
-.hca_r p { font-family:"微软雅黑"; font-size:24px; color:#000; margin:0px; padding:0px; padding-top:18px; line-height:46px;}
+.hca_r p { font-family:"微软雅黑"; font-size:24px; color:#000; margin:0px; padding:0px; padding-top:18px; line-height:46px; cursor: default; overflow-x: hidden;width: 136px;white-space: nowrap; text-overflow: ellipsis;}
 .hca_r li {text-align:center; line-height:34px; font-family:"微软雅黑"; font-size:22px; margin-top:12px;}
-.hca_r li a {color:#FFF;}
+.hca_r li a {color:#FFF;display: block;}
 .hc_btn1 { background:url(../images/front/hcbg1.png) no-repeat; width:127px; height:37px; }
 .hc_btn2 { background:url(../images/front/hcbg2.png) no-repeat; width:127px; height:37px;}
+.hc_btn2 a{cursor: not-allowed}
 .hc_bg{ background:url(../images/front/yj_bg.png) repeat-y; width:772px; padding:0px 20px 0px 20px;margin:0px auto;}
 
 /*--------------------------------------表格样式--------------------------------------------------*/
@@ -194,3 +195,9 @@ hr{ color:#ccc;border-bottom:1px solid #ccc;}
 
 /*--------------------------------------状态提示--------------------------------------------------*/
 .tishi{ width:500px; font-size:24px; color:#F00; margin:100px auto; font-weight:bold; }
+
+
+/*--------------------------------------fix--------------------------------------------------*/
+.quickdate-text-inputs {
+    display: none;
+}

@@ -5,7 +5,7 @@ angular.module('app', ['admin.meeting'])
 
         $urlRouterProvider.otherwise('/meeting');
 
-        $httpProvider.interceptors.push(['$q', '$location' , 'cfpLoadingBar', function ($q, $location, cfpLoadingBar) {
+        $httpProvider.interceptors.push(function ($q, $location, $filter, cfpLoadingBar) {
             return {
                 'request': function (request) {
 
@@ -16,6 +16,33 @@ angular.module('app', ['admin.meeting'])
                     if (request.cfpLoading === undefined || request.cfpLoading) {
                         cfpLoadingBar.start();
                     }
+
+                    if (angular.lowercase(request.method) == 'post' && !_.isEmpty(request.data)) {
+                        var config = {
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                            transformRequest: function (obj) {
+                                var str = [];
+                                for (var key in obj) {
+                                    var sub = obj[key];
+                                    for (var sk in sub) {
+                                        var value = sub[sk];
+                                        if (_.isObject(value)) {
+                                            if (_.isDate(value)) {
+                                                value = $filter('date')(value, 'yyyy-MM-dd HH:mm:ss')
+                                            }
+                                            if (value.time) {
+                                                value = $filter('date')(new Date(value.time), 'yyyy-MM-dd HH:mm:ss')
+                                            }
+                                        }
+                                        str.push(key + '.' + encodeURIComponent(sk) + "=" + encodeURIComponent(value));
+                                    }
+                                }
+                                return str.join("&");
+                            }
+                        }
+                        _.extend(request, config);
+                    }
+
                     return request || $q.when(request);
                 },
                 'response': function (response) {
@@ -36,7 +63,7 @@ angular.module('app', ['admin.meeting'])
                     return $q.reject(rejection);
                 }
             };
-        }]);
+        });
 
         cfpLoadingBarProvider.includeSpinner = false;
     })

@@ -22,41 +22,34 @@ angular.module('admin.meeting')
                 });
             },
 
-            createMeeting: function (x) {
+            createMeeting: function (meeting) {
                 return $http({
                     method: 'POST',
                     url: '/admin/meeting/ajax/meetingAdminAction!saveMeeting.shtml',
-                    params: {
-                        'meeting.name': x.name,
-                        'meeting.floor': x.floor,
-                        'meeting.personNum': x.personNum,
-                        'meeting.imgUrl': x.imgUrl,
-                        'meeting.description': x.description
+                    data: {
+                        meeting: meeting
                     }
                 });
             },
 
-            updateMeeting: function (x) {
+            updateMeeting: function (meeting) {
                 return $http({
                     method: 'POST',
                     url: '/admin/meeting/ajax/meetingAdminAction!saveMeeting.shtml',
-                    params: {
-                        'meeting.id': x.id,
-                        'meeting.name': x.name,
-                        'meeting.floor': x.floor,
-                        'meeting.personNum': x.personNum,
-                        'meeting.imgUrl': x.imgUrl,
-                        'meeting.description': x.description
+                    data: {
+                        meeting: meeting
                     }
                 });
             },
 
-            deleteMeeting: function (x) {
+            deleteMeeting: function (id) {
                 return $http({
                     method: 'POST',
                     url: '/admin/meeting/ajax/meetingAdminAction!deleteMeeting.shtml',
-                    params: {
-                        'meeting.id': x.id
+                    data: {
+                        meeting: {
+                            id: id
+                        }
                     }
                 });
             },
@@ -73,18 +66,22 @@ angular.module('admin.meeting')
                 return $http({
                     method: 'POST',
                     url: '/admin/meeting/ajax/meetingAdminAction!saveMeetingService.shtml',
-                    params: {
-                        'meetingService.serviceName': serviceName
+                    data: {
+                        meetingService: {
+                            serviceName: serviceName
+                        }
                     }
                 });
             },
 
-            removeService: function (x) {
+            removeService: function (id) {
                 return $http({
                     method: 'POST',
                     url: '/admin/meeting/ajax/meetingAdminAction!deleteMeetingService.shtml',
-                    params: {
-                        'meetingService.id': x.id
+                    data: {
+                        meetingService: {
+                            id: id
+                        }
                     }
                 });
             }

@@ -26,7 +26,7 @@ function browserSyncInit(baseDir, files, browser) {
   browser = browser === undefined ? 'default' : browser;
 
   browserSync.instance = browserSync.init(files, {
-    startPath: '/lsc/admin',
+    startPath: '/lsc',
     server: {
       baseDir: baseDir,
       middleware: proxyMiddleware

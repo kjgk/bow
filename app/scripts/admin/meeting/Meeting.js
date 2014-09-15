@@ -72,7 +72,7 @@ angular.module('admin.meeting', ['base'])
         };
 
         $scope.deleteMeeting = function (x) {
-            MeetingService.deleteMeeting(x).then(function () {
+            MeetingService.deleteMeeting(x.id).then(function () {
                 $scope.grid.refresh();
             });
         };
@@ -131,25 +131,6 @@ angular.module('admin.meeting', ['base'])
 
         $scope.grid.query();
 
-        $scope.createMeeting = function () {
-            $state.transitionTo('meeting.create');
-        };
-
-        $scope.updateMeeting = function (x) {
-            $state.transitionTo('meeting.update', {id: x.id});
-        };
-
-        $scope.toggleLock = function (x) {
-            if (x.lock) {
-                MeetingService.unlockMeeting(x).then($scope.grid.refresh);
-            } else {
-                MeetingService.lockMeeting(x).then($scope.grid.refresh);
-            }
-        };
-
-        $scope.deleteMeeting = function (x) {
-            MeetingService.deleteMeeting(x).then($scope.grid.refresh);
-        };
     })
 
     .controller('MeetingUnprocessedListCtrl', function ($scope, $timeout, $state, SimpleGrid, MeetingService) {
@@ -158,25 +139,6 @@ angular.module('admin.meeting', ['base'])
 
         $scope.grid.query();
 
-        $scope.createMeeting = function () {
-            $state.transitionTo('meeting.create');
-        };
-
-        $scope.updateMeeting = function (x) {
-            $state.transitionTo('meeting.update', {id: x.id});
-        };
-
-        $scope.toggleLock = function (x) {
-            if (x.lock) {
-                MeetingService.unlockMeeting(x).then($scope.grid.refresh);
-            } else {
-                MeetingService.lockMeeting(x).then($scope.grid.refresh);
-            }
-        };
-
-        $scope.deleteMeeting = function (x) {
-            MeetingService.deleteMeeting(x).then($scope.grid.refresh);
-        };
     })
 
     .controller('MeetingServiceCtrl', function ($scope, MeetingService) {
@@ -185,25 +147,28 @@ angular.module('admin.meeting', ['base'])
 
         $scope.serviceList = [];
 
-        MeetingService.getServiceList().then(function (result) {
-            $scope.serviceList = result.data;
-        });
+        $scope.getServiceList = function () {
+            MeetingService.getServiceList().then(function (result) {
+                $scope.serviceList = result.data;
+            });
+        }
 
         $scope.removeService = function (x) {
-            MeetingService.removeService(x).then(function () {
-                $scope.serviceList = _.without($scope.serviceList, x);
+            MeetingService.removeService(x.id).then(function () {
+                $scope.getServiceList();
             });
         };
 
         $scope.createService = function () {
             if (!_.isEmpty($scope.serviceName)) {
                 MeetingService.createService($scope.serviceName).then(function () {
-                    MeetingService.getServiceList().then(function (result) {
-                        $scope.serviceList = result.data;
-                    });
+                    $scope.getServiceList();
+                    $scope.serviceName = '';
                 });
-                $scope.serviceName = '';
+
             }
         };
+
+        $scope.getServiceList();
     })
 ;
