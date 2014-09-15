@@ -75,31 +75,31 @@ hr{ color:#ccc; height:1px;}
     color: #333;
 }
 /*--------------------------------------左边导航--------------------------------------------------*/
-.menu_a{ float:left;height:27px; padding:8px 0px 0px 25px; border:1px solid #b7b7b7; font-size:14px; color:#666; font-weight:bold; background:#F6f6f6 url(../images/dot_03.png) no-repeat 10px 12px; text-align:left; width:90px; margin-top:15px;}
-.menu_a:hover{ border-bottom:1px solid #b7b7b7; border-top:1px solid #b7b7b7; border-left:1px solid #b7b7b7; border-right:1px solid #fff; color:#C00; background:#FFF url(../images/dot_04.png) no-repeat 10px 12px;}
+.menu_a{ float:left;height:27px; padding:8px 0px 0px 25px; border:1px solid #b7b7b7; font-size:14px; color:#666; font-weight:bold; background:#F6f6f6 url(../images/admin/dot_03.png) no-repeat 10px 12px; text-align:left; width:90px; margin-top:15px;}
+.menu_a:hover{ border-bottom:1px solid #b7b7b7; border-top:1px solid #b7b7b7; border-left:1px solid #b7b7b7; border-right:1px solid #fff; color:#C00; background:#FFF url(../images/admin/dot_04.png) no-repeat 10px 12px;}
 
-.menu_b{ float:left;height:27px; padding:8px 0px 0px 25px; text-align:left; font-size:14px;font-weight:bold; width:90px; margin-top:15px; border-bottom:1px solid #b7b7b7; border-top:1px solid #b7b7b7; border-left:1px solid #b7b7b7; border-right:1px solid #fff; color:#C00; background:#FFF url(../images/dot_04.png) no-repeat 10px 12px;}
+.menu_b{ float:left;height:27px; padding:8px 0px 0px 25px; text-align:left; font-size:14px;font-weight:bold; width:90px; margin-top:15px; border-bottom:1px solid #b7b7b7; border-top:1px solid #b7b7b7; border-left:1px solid #b7b7b7; border-right:1px solid #fff; color:#C00; background:#FFF url(../images/admin/dot_04.png) no-repeat 10px 12px;}
 .menu_b:hover{}
 /*-------------------------------------- 网站主体样式--------------------------------------------------*/
 .top{height:53px; font-size:12px; margin:0px 10px; }
 .bottom {height:30px; padding-top:15px; border-top:1px #D1D7DC solid; color:#999; text-align:center; font-family: Arial; line-height:20px;}
 .left_dh{ float:left; width:117px; margin-left:2px;_margin-left:1px;}
 .right_nr{ margin-left:130px; position:relative; text-align:left;}
-.zongti{ margin:10px; background:url(../images/bg.png) repeat-y;}
+.zongti{ margin:10px; background:url(../images/admin/bg.png) repeat-y;}
 .zongti2{ margin:10px;}
 
 /*-----------------------------------------菜单-------------------------------------------------*/
-.menu_zong{ margin-top:10px;height:37px;background:url(../images/menu_dh_top.gif) bottom repeat-x;}
-.menu_left{ float:left; width:3px; height:37px; background:url(../images/menu_dh_left.gif) no-repeat;}
+.menu_zong{ margin-top:10px;height:37px;background:url(../images/admin/menu_dh_top.gif) bottom repeat-x;}
+.menu_left{ float:left; width:3px; height:37px; background:url(../images/admin/menu_dh_left.gif) no-repeat;}
 
-.menu_right{ float:right; width:3px; height:37px; background:url(../images/menu_dh_right.gif) no-repeat;}
+.menu_right{ float:right; width:3px; height:37px; background:url(../images/admin/menu_dh_right.gif) no-repeat;}
 
 .menu_center{height:37px; float:left;}
 
-.menu_da{ background:url(../images/menu_a.jpg) no-repeat; height:20px; width:118px; text-align:center; font-size:14px; font-weight:bold; color:#000; padding-top:10px; float:left; margin-right:5px;}
-.menu_da:hover{ background:url(../images/menu_b.jpg) no-repeat; height:20px; width:118px; text-align:center; font-size:14px; font-weight:bold; color:#fff; padding-top:10px; float:left; margin-right:5px;}
-.menu_db{ background:url(../images/menu_b.jpg) no-repeat; height:20px; width:118px; text-align:center; font-size:14px; font-weight:bold; color:#fff; padding-top:10px; float:left; margin-right:5px;}
-.menu_db:hover{ background:url(../images/menu_b.jpg) no-repeat; height:20px; width:118px; text-align:center; font-size:14px; font-weight:bold; color:#fff; padding-top:10px; float:left; margin-right:5px;}
+.menu_da{ background:url(../images/admin/menu_a.jpg) no-repeat; height:20px; width:118px; text-align:center; font-size:14px; font-weight:bold; color:#000; padding-top:10px; float:left; margin-right:5px;}
+.menu_da:hover{ background:url(../images/admin/menu_b.jpg) no-repeat; height:20px; width:118px; text-align:center; font-size:14px; font-weight:bold; color:#fff; padding-top:10px; float:left; margin-right:5px;}
+.menu_db{ background:url(../images/admin/menu_b.jpg) no-repeat; height:20px; width:118px; text-align:center; font-size:14px; font-weight:bold; color:#fff; padding-top:10px; float:left; margin-right:5px;}
+.menu_db:hover{ background:url(../images/admin/menu_b.jpg) no-repeat; height:20px; width:118px; text-align:center; font-size:14px; font-weight:bold; color:#fff; padding-top:10px; float:left; margin-right:5px;}
 
 /*-------------------------------主要内容样式------------------------------------*/
 .nr_round {
@@ -118,7 +118,7 @@ hr{ color:#ccc; height:1px;}
 .nr_tj{ padding-left:140px; padding-top:5px; margin-bottom:5px; height:30px;}
 .nr_lan{ border:3px solid #6ED0F6; padding:5px; position:relative; margin-bottom:10px;}
 .nr_bq{
-    background: url(../images/biaoqian.png) no-repeat;
+    background: url(../images/admin/biaoqian.png) no-repeat;
     width: 143px;
     height: 28px;
     position: absolute;
@@ -140,10 +140,10 @@ hr{ color:#ccc; height:1px;}
 .nr_zong{ height:410px; margin-bottom:20px;}
 /*---翻页----*/
 .fanye{padding:5px; height:25px; margin:0px auto; width:290px;}
-.fanye_a{ background:url(../images/fy_a.png) no-repeat; float:left; text-align:center; color:#FFF; font-weight:bold; font-size:14px; width:62px; height:28px; padding-top:5px; margin-right:10px;}
-.fanye_c{ background:url(../images/fy_c.png) no-repeat; float:left; text-align:center; color:#FFF; font-weight:bold; font-size:14px; width:62px; height:28px; padding-top:5px; margin-right:10px;}
-.fanye_a:hover{ background:url(../images/fy_b.png) no-repeat;color:#FFF;}
-.fanye_c:hover{ background:url(../images/fy_c.png) no-repeat;color:#FFF;cursor: not-allowed;}
+.fanye_a{ background:url(../images/admin/fy_a.png) no-repeat; float:left; text-align:center; color:#FFF; font-weight:bold; font-size:14px; width:62px; height:28px; padding-top:5px; margin-right:10px;}
+.fanye_c{ background:url(../images/admin/fy_c.png) no-repeat; float:left; text-align:center; color:#FFF; font-weight:bold; font-size:14px; width:62px; height:28px; padding-top:5px; margin-right:10px;}
+.fanye_a:hover{ background:url(../images/admin/fy_b.png) no-repeat;color:#FFF;}
+.fanye_c:hover{ background:url(../images/admin/fy_c.png) no-repeat;color:#FFF;cursor: not-allowed;}
 /*---食堂菜谱----*/
 .cp_list{ border:1px solid #b7b7b7; margin:0px 10px 10px 10px;}
 .cp_list li{ border-bottom:1px solid #b7b7b7; padding:10px;}
