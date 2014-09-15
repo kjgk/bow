@@ -29,12 +29,13 @@ angular.module('front.meeting')
                 });
             },
 
-            submitMeetingApply: function (x) {
+            submitMeetingApply: function (meetingApply) {
                 return $http({
                     method: 'POST',
-                    url: '/meeting/ajax/meetingAction!saveMeeting.shtml',
-                    data: x,
-                    transform: true
+                    url: '/meeting/ajax/meetingAction!submitMeetingApply.shtml',
+                    data: {
+                        meetingApplyInfo: meetingApply
+                    }
                 });
             }
         };

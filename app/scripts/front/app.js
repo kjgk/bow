@@ -26,12 +26,18 @@ angular.module('app', ['front.meeting'])
                                     var sub = obj[key];
                                     for (var sk in sub) {
                                         var value = sub[sk];
+                                        if (value === undefined || value === null) {
+                                            continue;
+                                        }
                                         if (_.isObject(value)) {
                                             if (_.isDate(value)) {
-                                                value = $filter('date', value, 'yyyy-MM-dd HH:mm:ss')
+                                                if (isNaN(value.getTime())) {
+                                                    continue;
+                                                }
+                                                value = $filter('date')(value, 'yyyy-MM-dd HH:mm:ss')
                                             }
                                             if (value.time) {
-                                                value = $filter('date', new Date(value.time), 'yyyy-MM-dd HH:mm:ss')
+                                                value = $filter('date')(new Date(value.time), 'yyyy-MM-dd HH:mm:ss')
                                             }
                                         }
                                         str.push(key + '.' + encodeURIComponent(sk) + "=" + encodeURIComponent(value));

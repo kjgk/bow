@@ -26,8 +26,14 @@ angular.module('app', ['admin.meeting'])
                                     var sub = obj[key];
                                     for (var sk in sub) {
                                         var value = sub[sk];
+                                        if (value === undefined || value === null) {
+                                            continue;
+                                        }
                                         if (_.isObject(value)) {
                                             if (_.isDate(value)) {
+                                                if (isNaN(value.getTime())) {
+                                                    continue;
+                                                }
                                                 value = $filter('date')(value, 'yyyy-MM-dd HH:mm:ss')
                                             }
                                             if (value.time) {

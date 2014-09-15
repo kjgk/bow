@@ -96,8 +96,20 @@ angular.module('front.meeting', ['base'])
         });
 
         $scope.submit = function(){
+            var meetingApply = {
+                meetingId: $scope.meetingApply.meetingId,
+                meetingName: $scope.meetingApply.meetingName,
+                useDateStartType: $scope.meetingApply.useDateStartType,
+                useDateEndType: $scope.meetingApply.useDateEndType,
+                personNum: $scope.meetingApply.personNum,
+                remark: $scope.meetingApply.remark,
+                useDateStart: new Date($scope.meetingApply.useDateStart),
+                useDateEnd:  new Date($scope.meetingApply.useDateEnd)
+            }
 
-            MeetingService.submitMeetingApply($scope.meetingApply).then(function () {
+//            console.log(meetingApply)
+//            return;
+            MeetingService.submitMeetingApply(meetingApply).then(function () {
             });
         }
     })
