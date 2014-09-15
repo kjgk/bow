@@ -72,7 +72,7 @@ angular.module('admin.meeting', ['base'])
         };
 
         $scope.deleteMeeting = function (x) {
-            MeetingService.deleteMeeting(x).then(function(){
+            MeetingService.deleteMeeting(x).then(function () {
                 $scope.grid.refresh();
             });
         };
@@ -158,10 +158,12 @@ angular.module('admin.meeting', ['base'])
 
     .controller('MeetingServiceCtrl', function ($scope, MeetingService) {
 
-        $scope.service = '';
+        $scope.serviceName = '';
+
+        $scope.serviceList = [];
 
         MeetingService.getServiceList().then(function (result) {
-            $scope.serviceList = result;
+            $scope.serviceList = result.data;
         });
 
         $scope.removeService = function (x) {
@@ -171,11 +173,13 @@ angular.module('admin.meeting', ['base'])
         };
 
         $scope.createService = function () {
-            if (!_.isEmpty($scope.service)) {
-                MeetingService.createService($scope.service).then(function () {
-                    $scope.serviceList.push($scope.service);
-                    $scope.service = '';
+            if (!_.isEmpty($scope.serviceName)) {
+                MeetingService.createService($scope.serviceName).then(function () {
+                    MeetingService.getServiceList().then(function (result) {
+                        $scope.serviceList = result.data;
+                    });
                 });
+                $scope.serviceName = '';
             }
         };
     })

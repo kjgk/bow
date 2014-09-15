@@ -4,13 +4,14 @@
         <div class="nr_bq">服务管理</div>
         <div class="nr_tj"></div>
         <div class="cp_list2">&nbsp;新增&nbsp;服务项目:
-            <input type="text" name="textfield2" id="textfield2" ng-model="service">
+            <input type="text" name="textfield2" id="textfield2" ng-model="serviceName">
             <input type="image" src="../../../images/admin/btn_09.png" value="提交" align="absmiddle" ng-click="createService()">
         </div>
         <div class="cp_list">
             <dl>
                 <dt>
-                    <a ng-repeat="x in serviceList">{{x}}<img ng-click="removeService(x)" src="../../../images/admin/dot_05.gif"/></a>
+                    <a ng-repeat="x in serviceList">{{x.serviceName}}<img ng-click="removeService(x)"
+                                                                          src="../../../images/admin/dot_05.gif"/></a>
                 </dt>
             </dl>
         </div>

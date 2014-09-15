@@ -59,38 +59,32 @@ angular.module('admin.meeting')
                 });
             },
 
-
             getServiceList: function () {
-                var defer = $q.defer();
-                $timeout(function () {
-                    defer.resolve(localStorageService.get('serviceList') || [
-                        '纸巾', '茶水', '纸杯', '投影', '仪话筒'
-                    ]);
+                return $http({
+                    method: 'GET',
+                    url: '/admin/meeting/ajax/meetingAdminAction!getMeetingServiceList.shtml'
                 });
-                return defer.promise;
             },
 
-            createService: function (x) {
-                var defer = $q.defer();
-                $timeout(function () {
-                    me.getServiceList().then(function (result) {
-                        result.push(x);
-                        localStorageService.set('serviceList', result);
-                    });
-                    defer.resolve(true);
+            createService: function (serviceName) {
+
+                return $http({
+                    method: 'POST',
+                    url: '/admin/meeting/ajax/meetingAdminAction!saveMeetingService.shtml',
+                    params: {
+                        'meetingService.serviceName': serviceName
+                    }
                 });
-                return defer.promise;
             },
 
             removeService: function (x) {
-                var defer = $q.defer();
-                $timeout(function () {
-                    me.getServiceList().then(function (result) {
-                        localStorageService.set('serviceList', _.without(result, x));
-                    });
-                    defer.resolve(true);
+                return $http({
+                    method: 'POST',
+                    url: '/admin/meeting/ajax/meetingAdminAction!deleteMeetingService.shtml',
+                    params: {
+                        'meetingService.id': x.id
+                    }
                 });
-                return defer.promise;
             }
         };
         return me;
