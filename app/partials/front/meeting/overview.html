@@ -1,0 +1,30 @@
+<!--右边内容-->
+<div class="right_nr">
+    <div class="jd_bta">
+        <div class="hc_tishi">
+            <span>日期查询：
+              <quick-datepicker ng-model='date' disable-timepicker="true" placeholder="请选择日期" date-format="yyyy-MM-dd"></quick-datepicker>
+              <input type="button" name="button" ng-click="query()" value="查询">
+            </span>
+            <p>温馨提示：您可以点击相应图标查看详情，红色表示已在使用，绿色表示可申请。</p>
+        </div>
+        <div class="btn_hc"><span style="float:right;"><a href="#/meeting/apply/list"><img src="images/front/btn_10.png"/></a></span></div>
+        <div class="clear"></div>
+    </div>
+
+    <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
+        <div ng-repeat="x in grid.data" class="hca">
+            <div class="hca_l"><img src="images/front/ys13.png"></div>
+            <div class="hca_r">
+                <p>{{x.name}}</p>
+                <ul>
+                    <li class="hc_btn1"><a href="#/meeting/preview/{{x.id}}" style="display: block;">上 午</a></li>
+                    <li class="hc_btn2"><a href="" style="display: block; cursor: not-allowed;">上 午</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </table>
+
+    <div pagination grid="grid"></div>
+</div>

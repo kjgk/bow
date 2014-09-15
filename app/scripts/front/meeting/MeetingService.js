@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('admin.meeting')
+angular.module('front.meeting')
 
     .factory('MeetingService', function ($q, $timeout, $http, localStorageService) {
 
@@ -14,7 +14,7 @@ angular.module('admin.meeting')
                 });
             },
 
-            getMeetingList: function (params) {
+            queryMeeting: function (params) {
                 return $http({
                     method: 'GET',
                     params: params,
@@ -30,7 +30,6 @@ angular.module('admin.meeting')
                         'meeting.name': x.name,
                         'meeting.floor': x.floor,
                         'meeting.personNum': x.personNum,
-                        'meeting.imgUrl': x.imgUrl,
                         'meeting.description': x.description
                     }
                 });
@@ -45,7 +44,6 @@ angular.module('admin.meeting')
                         'meeting.name': x.name,
                         'meeting.floor': x.floor,
                         'meeting.personNum': x.personNum,
-                        'meeting.imgUrl': x.imgUrl,
                         'meeting.description': x.description
                     }
                 });

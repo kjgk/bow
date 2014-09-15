@@ -72,24 +72,36 @@ angular.module('admin.meeting', ['base'])
         };
 
         $scope.deleteMeeting = function (x) {
-            MeetingService.deleteMeeting(x).then(function(){
+            MeetingService.deleteMeeting(x).then(function () {
                 $scope.grid.refresh();
             });
         };
     })
 
-    .controller('MeetingCreateCtrl', function ($scope, $state, MeetingService) {
+    .controller('MeetingCreateCtrl', function ($scope, $state, MeetingService, FileUploader) {
 
         $scope.title = '新增会场';
         $scope.meeting = {};
+
         $scope.submit = function () {
             MeetingService.createMeeting($scope.meeting).then(function () {
                 $state.transitionTo('meeting.list');
             });
         };
+
+        var uploader = $scope.uploader = new FileUploader({
+            url: $scope.contextPath + '/admin/meeting/ajax/meetingAdminAction!uploadMeetingImage.shtml',
+            alias: 'image',
+            removeAfterUpload: true,
+            autoUpload: true
+        });
+
+        uploader.onSuccessItem = function (fileItem, response, status, headers) {
+            $scope.meeting.imgUrl = response;
+        };
     })
 
-    .controller('MeetingUpdateCtrl', function ($scope, $state, MeetingService) {
+    .controller('MeetingUpdateCtrl', function ($scope, $state, MeetingService, FileUploader) {
 
         $scope.title = '修改会场';
         MeetingService.getMeeting($state.params.id).then(function (response) {
@@ -99,6 +111,17 @@ angular.module('admin.meeting', ['base'])
             MeetingService.updateMeeting($scope.meeting).then(function () {
                 $state.transitionTo('meeting.list');
             });
+        };
+
+        var uploader = $scope.uploader = new FileUploader({
+            url: $scope.contextPath + '/admin/meeting/ajax/meetingAdminAction!uploadMeetingImage.shtml',
+            alias: 'image',
+            removeAfterUpload: true,
+            autoUpload: true
+        });
+
+        uploader.onSuccessItem = function (fileItem, response, status, headers) {
+            $scope.meeting.imgUrl = response;
         };
     })
 
