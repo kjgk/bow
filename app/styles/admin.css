@@ -111,7 +111,7 @@ hr{ color:#ccc; height:1px;}
     -moz-border-radius: 6px;      /* Gecko browsers */
     -webkit-border-radius: 6px;   /* Webkit browsers */
     border-radius:6px;            /* W3C syntax */
-    behavior: url(../css/ie-css3.htc); /* 通知IE浏览器调用脚本作用于'box'类 */
+    behavior: url(ie-css3.htc); /* 通知IE浏览器调用脚本作用于'box'类 */
 }
 .nr_round li{ width:160px;  height:20px; padding-top:10px; border-bottom:1px solid #ccc; color:#333; float:left; margin-bottom:10px;overflow:hidden;}
 

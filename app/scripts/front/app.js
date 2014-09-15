@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['admin.meeting'])
+angular.module('app', ['front.meeting'])
     .config(function ($httpProvider, $stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
 
         $urlRouterProvider.otherwise('/meeting');
@@ -41,8 +41,19 @@ angular.module('app', ['admin.meeting'])
         cfpLoadingBarProvider.includeSpinner = false;
     })
 
-    .controller('MainCtrl', function ($scope, $rootScope) {
+    .controller('MainCtrl', function ($scope, $state) {
 
-        $rootScope.contextPath = '/lsc';
+        $scope.back = function(){
+            $state.transitionTo('meeting.overview');
+        }
+
+        $scope.menuList = [
+            {href: '', src: ['images/front/menu_01a.png', 'images/front/menu_01b.png']},
+            {href: '', src: ['images/front/menu_02a.png', 'images/front/menu_02b.png']},
+            {href: '#/meeting/overview', src: ['images/front/menu_03a.png', 'images/front/menu_03b.png']},
+            {href: '#/meeting/overview', src: ['images/front/menu_04a.png', 'images/front/menu_04b.png']},
+            {href: '', src: ['images/front/menu_05a.png', 'images/front/menu_05b.png']},
+            {href: '', src: ['images/front/menu_06a.png', 'images/front/menu_06b.png']}
+        ]
     })
 ;

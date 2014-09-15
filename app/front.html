@@ -2,7 +2,7 @@
 <html class="no-js" ng-app="app">
 <head>
     <meta charset="utf-8">
-    <title>后勤服务中心管理后台</title>
+    <title>后勤服务中心</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -18,7 +18,7 @@
     <!-- endbuild -->
 
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" type="text/css" href="styles/admin.css" />
+    <link rel="stylesheet" type="text/css" href="styles/front.css" />
     <!-- endbuild -->
 
     <!-- build:js scripts/modernizr.js -->
@@ -30,29 +30,20 @@
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<!--顶部开始-->
-<div class="top"><span class="left"><img src="images/admin/logo.png" width="435" height="62" /></span><span class="right jg_up">您好，<span class="ahong">系统管理员</span>&nbsp;|&nbsp;<a href="#" class="alan">安全退出</a></span></div>
-<!--顶部结束-->
-
-<!--菜单开始-->
-<div class="menu_zong">
-    <div class="menu_left"></div>
-    <div class="menu_center">
-        <a href="食堂菜谱01.html" class="menu_da">食堂菜谱</a>
-        <a href="接待点餐01.html" class="menu_da">接待点餐</a>
-        <a href="机票预订01.html" class="menu_da">机票预订</a>
-        <a href="#/meeting" class="menu_db">会场预订</a>
-        <a href="意见征求01.html" class="menu_da">意见征求</a>
-    </div>
-    <div class="menu_right"></div>
-    <div class="clear"></div>
+<div class="top_logo"><img src="images/front/logo.png"/>
+    <div class="btn_back"><a href="javascript:void(0);"><img ng-click="back()" src="images/front/back.png"/></a></div>
 </div>
-<!--菜单结束-->
 
-<div ui-view></div>
-
-<!--底部-->
-<div class="bottom">技术支持：上海交大慧谷通用技术有限公司</div>
+<!--整体框架开始-->
+<div class="neirong">
+    <!--左边菜单-->
+    <div class="left_menu">
+        <a ng-repeat="x in menuList" href="{{x.href}}"><img ng-src="{{x.src[0]}}"/></a>
+    </div>
+    <div ui-view></div>
+</div>
+<!--整体框架结束-->
+<div class="bottom">技术支持：上海交大慧谷通用技术有限公司&nbsp;&nbsp;&nbsp;&nbsp;温馨提示：本系统用1280*720分辨率，IE9及以上，效果更佳。</div>
 
 
 <!-- build:js scripts/vendor.js -->
@@ -70,10 +61,10 @@
 
 <!-- build:js({app,.tmp}) scripts/main.js -->
 <script src="./scripts/common.js"></script>
-<script src="./scripts/admin/base.js"></script>
-<script src="./scripts/admin/app.js"></script>
-<script src="./scripts/admin/meeting/Meeting.js"></script>
-<script src="./scripts/admin/meeting/MeetingService.js"></script>
+<script src="./scripts/front/base.js"></script>
+<script src="./scripts/front/app.js"></script>
+<script src="./scripts/front/meeting/Meeting.js"></script>
+<script src="./scripts/front/meeting/MeetingService.js"></script>
 
 <!-- inject:partials -->
 <!-- angular templates will be automaticaly converted in js and inserted here -->

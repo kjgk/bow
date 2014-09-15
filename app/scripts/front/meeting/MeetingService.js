@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('admin.meeting')
+angular.module('front.meeting')
 
     .factory('MeetingService', function ($q, $timeout, $http, localStorageService) {
 
@@ -14,7 +14,7 @@ angular.module('admin.meeting')
                 });
             },
 
-            getMeetingList: function (params) {
+            queryMeeting: function (params) {
                 return $http({
                     method: 'GET',
                     params: params,
@@ -30,7 +30,6 @@ angular.module('admin.meeting')
                         'meeting.name': x.name,
                         'meeting.floor': x.floor,
                         'meeting.personNum': x.personNum,
-                        'meeting.imgUrl': x.imgUrl,
                         'meeting.description': x.description
                     }
                 });
@@ -45,7 +44,6 @@ angular.module('admin.meeting')
                         'meeting.name': x.name,
                         'meeting.floor': x.floor,
                         'meeting.personNum': x.personNum,
-                        'meeting.imgUrl': x.imgUrl,
                         'meeting.description': x.description
                     }
                 });
@@ -61,32 +59,38 @@ angular.module('admin.meeting')
                 });
             },
 
+
             getServiceList: function () {
-                return $http({
-                    method: 'GET',
-                    url: '/admin/meeting/ajax/meetingAdminAction!getMeetingServiceList.shtml'
+                var defer = $q.defer();
+                $timeout(function () {
+                    defer.resolve(localStorageService.get('serviceList') || [
+                        '纸巾', '茶水', '纸杯', '投影', '仪话筒'
+                    ]);
                 });
+                return defer.promise;
             },
 
-            createService: function (serviceName) {
-
-                return $http({
-                    method: 'POST',
-                    url: '/admin/meeting/ajax/meetingAdminAction!saveMeetingService.shtml',
-                    params: {
-                        'meetingService.serviceName': serviceName
-                    }
+            createService: function (x) {
+                var defer = $q.defer();
+                $timeout(function () {
+                    me.getServiceList().then(function (result) {
+                        result.push(x);
+                        localStorageService.set('serviceList', result);
+                    });
+                    defer.resolve(true);
                 });
+                return defer.promise;
             },
 
             removeService: function (x) {
-                return $http({
-                    method: 'POST',
-                    url: '/admin/meeting/ajax/meetingAdminAction!deleteMeetingService.shtml',
-                    params: {
-                        'meetingService.id': x.id
-                    }
+                var defer = $q.defer();
+                $timeout(function () {
+                    me.getServiceList().then(function (result) {
+                        localStorageService.set('serviceList', _.without(result, x));
+                    });
+                    defer.resolve(true);
                 });
+                return defer.promise;
             }
         };
         return me;
