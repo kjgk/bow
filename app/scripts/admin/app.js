@@ -10,7 +10,7 @@ angular.module('app', ['admin.meeting'])
                 'request': function (request) {
 
                     if (request.url.indexOf("/admin") == 0) {
-                        request.url = "/lsc/" + request.url;
+                        request.url = "/lsc" + (request.url[0] == '/' ? '' : '/') + request.url;
                     }
 
                     if (request.cfpLoading === undefined || request.cfpLoading) {
