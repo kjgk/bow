@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" ng-app="app">
+<html ng-app="app">
 <head>
     <meta charset="utf-8">
     <title>后勤服务中心管理后台</title>
@@ -18,13 +18,10 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css({.tmp,app}) styles/main.css -->
+    <!-- build:css({.tmp,app}) styles/admin.css -->
     <link rel="stylesheet" type="text/css" href="styles/admin.css" />
     <!-- endbuild -->
 
-    <!-- build:js scripts/modernizr.js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
 </head>
 <body ng-controller="MainCtrl">
 <!--[if lt IE 9]>
@@ -39,11 +36,11 @@
 <div class="menu_zong">
     <div class="menu_left"></div>
     <div class="menu_center">
-        <a href="食堂菜谱01.html" class="menu_da">食堂菜谱</a>
-        <a href="接待点餐01.html" class="menu_da">接待点餐</a>
-        <a href="机票预订01.html" class="menu_da">机票预订</a>
+        <a href="../admin/canteen/main.jsp" class="menu_da">食堂菜谱</a>
+        <a href="#" class="menu_da">接待点餐</a>
+        <a href="../admin/flight/notDealFlightList.jsp" class="menu_da">机票预订</a>
         <a href="#/meeting" class="menu_db">会场预订</a>
-        <a href="意见征求01.html" class="menu_da">意见征求</a>
+        <a href="#" class="menu_da">意见征求</a>
     </div>
     <div class="menu_right"></div>
     <div class="clear"></div>
@@ -70,7 +67,7 @@
 <!-- endbower -->
 <!-- endbuild -->
 
-<!-- build:js({app,.tmp}) scripts/main.js -->
+<!-- build:js({app,.tmp}) scripts/admin.js -->
 <script src="./scripts/common.js"></script>
 <script src="./scripts/admin/base.js"></script>
 <script src="./scripts/admin/app.js"></script>

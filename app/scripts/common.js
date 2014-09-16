@@ -9,6 +9,8 @@ angular.module('common', ['ui.router', 'angular-loading-bar', 'ngQuickDate'])
         FAIL: 4
     })
 
+    .value('contextPath', '/lsc')
+
     .config(function (cfpLoadingBarProvider, ngQuickDateDefaultsProvider) {
 
         cfpLoadingBarProvider.includeSpinner = false;

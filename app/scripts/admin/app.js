@@ -5,13 +5,9 @@ angular.module('app', ['admin.meeting'])
 
         $urlRouterProvider.otherwise('/meeting');
 
-        $httpProvider.interceptors.push(function ($q, $location, $filter, cfpLoadingBar) {
+        $httpProvider.interceptors.push(function ($q, $location, $filter, cfpLoadingBar, contextPath) {
             return {
                 'request': function (request) {
-
-                    if (request.url.indexOf("/admin") == 0) {
-                        request.url = "/lsc" + (request.url[0] == '/' ? '' : '/') + request.url;
-                    }
 
                     if (request.cfpLoading === undefined || request.cfpLoading) {
                         cfpLoadingBar.start();
@@ -73,8 +69,12 @@ angular.module('app', ['admin.meeting'])
 
     })
 
-    .controller('MainCtrl', function ($scope, $rootScope) {
+    .controller('MainCtrl', function ($scope, $rootScope, $state, contextPath) {
 
-        $rootScope.contextPath = '/lsc';
+        $rootScope.contextPath = contextPath;
+
+        $scope.onlyAfterDays = function (d) {
+            return new Date().getTime() < (d.getTime() + 1000 * 60 * 60 * 24);
+        };
     })
 ;

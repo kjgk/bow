@@ -5,13 +5,9 @@ angular.module('app', ['front.meeting'])
 
         $urlRouterProvider.otherwise('/meeting');
 
-        $httpProvider.interceptors.push(function ($q, $location, $filter, cfpLoadingBar) {
+        $httpProvider.interceptors.push(function ($q, $location, $filter, cfpLoadingBar, contextPath) {
             return {
                 'request': function (request) {
-
-                    if (request.url.indexOf("/meeting") == 0) {
-                        request.url = "/lsc" + (request.url[0] == '/' ? '' : '/') + request.url;
-                    }
 
                     if (request.cfpLoading === undefined || request.cfpLoading) {
                         cfpLoadingBar.start();
@@ -73,9 +69,9 @@ angular.module('app', ['front.meeting'])
 
     })
 
-    .controller('MainCtrl', function ($scope, $rootScope, $state) {
+    .controller('MainCtrl', function ($scope, $rootScope, $state, contextPath) {
 
-        $rootScope.contextPath = '/lsc';
+        $rootScope.contextPath = contextPath;
 
         $scope.back = function () {
             $state.transitionTo('meeting.overview');
@@ -86,12 +82,12 @@ angular.module('app', ['front.meeting'])
         };
 
         $scope.menuList = [
-            {href: '', src: ['images/front/menu_01a.png', 'images/front/menu_01b.png']},
-            {href: '', src: ['images/front/menu_02a.png', 'images/front/menu_02b.png']},
-            {href: '#/meeting/overview', src: ['images/front/menu_03a.png', 'images/front/menu_03b.png']},
+            {href: '../canteen/index.html', src: ['images/front/menu_01a.png', 'images/front/menu_01b.png']},
+            {href: '../canteen/weekDetail.jsp', src: ['images/front/menu_02a.png', 'images/front/menu_02b.png']},
+            {href: '#', src: ['images/front/menu_03a.png', 'images/front/menu_03b.png']},
             {href: '#/meeting/overview', src: ['images/front/menu_04a.png', 'images/front/menu_04b.png']},
-            {href: '', src: ['images/front/menu_05a.png', 'images/front/menu_05b.png']},
-            {href: '', src: ['images/front/menu_06a.png', 'images/front/menu_06b.png']}
+            {href: '../flight/flightApplyList.jsp', src: ['images/front/menu_05a.png', 'images/front/menu_05b.png']},
+            {href: '../canteen/yijian.html', src: ['images/front/menu_06a.png', 'images/front/menu_06b.png']}
         ]
     })
 ;
