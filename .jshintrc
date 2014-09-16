@@ -21,6 +21,7 @@
   "validthis": true,
   "globals": {
     "angular": false,
-    "_": false
+    "_": false,
+    "DateFormat": false
   }
 }

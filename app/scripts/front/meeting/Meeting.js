@@ -2,6 +2,7 @@
 
 angular.module('front.meeting', ['base'])
     .config(function ($stateProvider, $urlRouterProvider) {
+
         $stateProvider
             .state('meeting', {
                 abstract: true,
@@ -33,13 +34,9 @@ angular.module('front.meeting', ['base'])
                 templateUrl: 'partials/front/meeting/apply-list.html',
                 controller: 'MeetingApplyListCtrl'
             })
-            .state('meeting.apply.success', {
-                url: '/success/:id',
-                templateUrl: 'partials/front/meeting/apply-success.html'
-            })
-            .state('meeting.apply.fail', {
-                url: '/fail/:id',
-                templateUrl: 'partials/front/meeting/apply-fail.html'
+            .state('meeting.apply.result', {
+                url: '/result/:id',
+                templateUrl: 'partials/front/meeting/apply-result.html'
             });
 
         $urlRouterProvider
@@ -47,31 +44,60 @@ angular.module('front.meeting', ['base'])
             .when('/meeting/apply', '/meeting/apply/list');
     })
 
-
-    .controller('MeetingOverviewCtrl', function ($scope, $filter, $state, SimpleGrid, MeetingService) {
+    .controller('MeetingOverviewCtrl', function ($scope, $state, SimpleGrid, MeetingService) {
 
         $scope.date = new Date();
-
-        $scope.grid = SimpleGrid(MeetingService.queryMeeting, {pageSize: 4});
-
+        $scope.grid = SimpleGrid(MeetingService.queryMeetingList, {pageSize: 4});
         $scope.query = function () {
             $scope.grid.query({
-                date: $scope.date == null ? undefined : $filter('date')($scope.date.getTime(), 'yyyy-MM-dd')
+                date: $scope.date == null ? undefined : DateFormat.date($scope.date, 'yyyy-MM-dd')
             });
+        };
+        $scope.checkState = function (state, type) {
+            if (_.isEmpty(state)) {
+                return true;
+            }
+            return ("" + state).indexOf(type) == -1;
+        };
+
+        $scope.onlyAfterdays = function (d) {
+            return new Date().getTime() < (d.getTime() + 1000 * 60 * 60 * 24);
         };
 
         $scope.query();
     })
 
     .controller('MeetingPreviewCtrl', function ($scope, $state, MeetingService) {
+
         MeetingService.getMeeting($state.params.id).then(function (response) {
             $scope.meeting = response.data;
         });
     })
 
 
-    .controller('MeetingApplyListCtrl', function ($scope, $state, MeetingService) {
+    .controller('MeetingApplyListCtrl', function ($scope, $state, SimpleGrid, MeetingService) {
 
+        $scope.date = null;
+        $scope.grid = SimpleGrid(MeetingService.queryMeetingApplyList);
+        $scope.query = function () {
+            $scope.grid.query({
+                date: $scope.date == null ? undefined : DateFormat.date($scope.date, 'yyyy-MM-dd')
+            });
+        };
+
+        $scope.query();
+
+        $scope.getUseDateText = function (meetingApply) {
+            var type = {
+                1: '上午',
+                2: '下午',
+                3: '全天'
+            };
+            return DateFormat.date(new Date(meetingApply.useDateStart.time), 'yyyy-MM-dd')
+                + ' ' + type[meetingApply.useDateStartType]
+                + (meetingApply.useDateEnd ?
+                    (' 至 ' + DateFormat.date(new Date(meetingApply.useDateEnd.time), 'yyyy-MM-dd') + ' ' + type[meetingApply.useDateEndType] ) : '');
+        };
     })
 
     .controller('MeetingApplySubmitCtrl', function ($scope, $state, MeetingService) {
@@ -82,12 +108,12 @@ angular.module('front.meeting', ['base'])
             useDateStartType: 3,
             useDateEndType: 3,
             meetingService: {}
-        }
+        };
         MeetingService.getServiceList().then(function (response) {
             $scope.serviceList = response.data;
             _.each($scope.serviceList, function (item) {
                 $scope.meetingApply.meetingService[item.id] = false;
-            })
+            });
         });
         MeetingService.getMeeting($state.params.id).then(function (response) {
             $scope.meeting = response.data;
@@ -95,7 +121,14 @@ angular.module('front.meeting', ['base'])
             $scope.meetingApply.meetingName = $scope.meeting.name;
         });
 
-        $scope.submit = function(){
+        $scope.submit = function () {
+            var serviceList = [];
+            _.each($scope.meetingApply.meetingService, function (value, key) {
+                if (value) {
+                    serviceList.push(key);
+                }
+            });
+
             var meetingApply = {
                 meetingId: $scope.meetingApply.meetingId,
                 meetingName: $scope.meetingApply.meetingName,
@@ -103,14 +136,14 @@ angular.module('front.meeting', ['base'])
                 useDateEndType: $scope.meetingApply.useDateEndType,
                 personNum: $scope.meetingApply.personNum,
                 remark: $scope.meetingApply.remark,
-                useDateStart: new Date($scope.meetingApply.useDateStart),
-                useDateEnd:  new Date($scope.meetingApply.useDateEnd)
-            }
+                useDateStart: $scope.meetingApply.useDateStart,
+                useDateEnd: $scope.meetingApply.useDateEnd,
+                service: serviceList.join(',')
+            };
 
-//            console.log(meetingApply)
-//            return;
             MeetingService.submitMeetingApply(meetingApply).then(function () {
+                $state.transitionTo('meeting.apply.list');
             });
-        }
+        };
     })
 ;

@@ -3,7 +3,7 @@
     <div class="jd_bta">
         <div class="hc_tishi">
             <span>日期查询：
-              <quick-datepicker ng-model='date'></quick-datepicker>
+              <quick-datepicker ng-model='date' date-filter='onlyAfterdays'></quick-datepicker>
               <input type="button" name="button" ng-click="query()" value="查询">
             </span>
 
@@ -19,10 +19,10 @@
             <div class="hca_r">
                 <p>{{x.name}}</p>
                 <ul>
-                    <li class="hc_btn1" ng-show="x.state[0]=='1'"><a href="#/meeting/preview/{{x.id}}">上 午</a></li>
-                    <li class="hc_btn2" ng-show="x.state[0]=='0'"><a href="javascript:void(0)">上 午</a></li>
-                    <li class="hc_btn1" ng-show="x.state[1]=='1'"><a href="#/meeting/preview/{{x.id}}">下 午</a></li>
-                    <li class="hc_btn2" ng-show="x.state[1]=='0'"><a href="javascript:void(0)">下 午</a></li>
+                    <li class="hc_btn1" ng-show="checkState(x.state, 1)"><a href="#/meeting/preview/{{x.id}}">上 午</a></li>
+                    <li class="hc_btn2" ng-show="!checkState(x.state, 1)"><a href="javascript:void(0)">上 午</a></li>
+                    <li class="hc_btn1" ng-show="checkState(x.state, 2)"><a href="#/meeting/preview/{{x.id}}">下 午</a></li>
+                    <li class="hc_btn2" ng-show="!checkState(x.state, 2)"><a href="javascript:void(0)">下 午</a></li>
                 </ul>
             </div>
             <div class="clear"></div>

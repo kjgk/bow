@@ -201,3 +201,6 @@ hr{ color:#ccc;border-bottom:1px solid #ccc;}
 .quickdate-text-inputs {
     display: none;
 }
+table.quickdate-calendar td.disabled-date {
+     color: #cfcfcf;
+}

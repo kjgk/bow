@@ -38,8 +38,7 @@
             <tr>
                 <td align="right">配套服务：</td>
                 <td>
-                    <input ng-repeat-start="x in serviceList" name="serviceName" ng-model="meetingApply.meetingService[x.id]" type="checkbox" id="{{'serviceName_' + x.id}}">
-                    <label ng-repeat-end for="{{'serviceName_' + x.id}}">{{x.serviceName}}&nbsp;&nbsp;</label>
+                    <input ng-repeat-start="x in serviceList" name="serviceName" ng-model="meetingApply.meetingService[x.id]" type="checkbox" id="{{'serviceName_' + x.id}}"><label ng-repeat-end for="{{'serviceName_' + x.id}}">{{x.serviceName}}&nbsp;&nbsp;</label>
                 </td>
             </tr>
             <tr>

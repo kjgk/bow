@@ -7,7 +7,11 @@
             <tr>
                 <td width="100" align="right">会场名称：</td>
                 <td>{{meeting.name}}</td>
-                <td>目前状态：<span class="ahong">使用中。</span><span class="alan">（至2014-07-30下午空闲）</span></td>
+                <td>目前状态：
+                    <span ng-show="meeting.state==1" class="alv">空闲。</span>
+                    <span ng-show="meeting.state==2" class="ahong">使用中。</span>
+                    <!--<span class="alan">（至2014-07-30下午空闲）</span>-->
+                </td>
             </tr>
             <tr>
                 <td align="right" valign="top">会场照片：</td>
@@ -18,7 +22,7 @@
                 <td colspan="2" valign="top">{{meeting.description}}</td>
             </tr>
         </table>
-        <div class="jp_btn"><a href="#/meeting/apply/submit/12"><img src="images/front/btn_03.png"/></a></div>
+        <div class="jp_btn"><a href="#/meeting/apply/submit/{{meeting.id}}"><img src="images/front/btn_03.png"/></a></div>
     </div>
     <div class="yj_down"></div>
 </div>

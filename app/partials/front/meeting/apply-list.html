@@ -1,11 +1,12 @@
 <!--右边内容-->
 <div class="right_nr">
-    <div class="jd_bt2"><span style="float:left;">日期查询：
-  <select name="select" id="select">
-      <option>2014-07-21</option>
-  </select>
-  <input type="button" name="button" id="button" value="查询"></span>
-        <span style="float:right;"><a href="#/meeting/overview"><img src="images/front/btn_05.png"/></a></span></div>
+    <div class="jd_bt2">
+        <span>日期查询：
+              <quick-datepicker ng-model='date'></quick-datepicker>
+              <input type="button" name="button" ng-click="query()" value="查询">
+            </span>
+        <span style="float:right;"><a href="#/meeting/overview"><img src="images/front/btn_05.png"/></a></span>
+    </div>
     <table width="99%" border="1" align="center" cellpadding="5" cellspacing="0" class="biaoge">
         <tr>
             <th>申请时间</th>
@@ -14,11 +15,15 @@
             <th>状态</th>
         </tr>
 
-        <tr>
-            <td>2014-07-21&nbsp;&nbsp;10:20</td>
-            <td>5-25</td>
-            <td>2014-07-17&nbsp;&nbsp;下午&nbsp;至&nbsp;2014-07-19&nbsp;&nbsp;上午</td>
-            <td><a href="yuding4.html" class="alv">预订成功【查看】 </a></td>
+        <tr ng-repeat="x in grid.data">
+            <td>{{x.applyTime|$date}}</td>
+            <td>{{x.meetingName}}</td>
+            <td>{{getUseDateText(x)}}</td>
+            <td>
+                <span ng-show="x.status==2" class="alan">等待反馈…</span>
+                <a ng-show="x.status==3" href="#/meeting/apply/result/{{x.id}}" class="alv">预订成功【查看】</a>
+                <a ng-show="x.status==4" href="#/meeting/apply/result/{{x.id}}" class="ahong">预订失败【查看】</a>
+            </td>
         </tr>
     </table>
 

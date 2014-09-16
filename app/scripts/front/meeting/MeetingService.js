@@ -14,7 +14,7 @@ angular.module('front.meeting')
                 });
             },
 
-            queryMeeting: function (params) {
+            queryMeetingList: function (params) {
                 return $http({
                     method: 'GET',
                     params: params,
@@ -26,6 +26,14 @@ angular.module('front.meeting')
                 return $http({
                     method: 'GET',
                     url: '/meeting/ajax/meetingAction!getMeetingServiceList.shtml'
+                });
+            },
+
+            queryMeetingApplyList: function (params) {
+                return $http({
+                    method: 'GET',
+                    params: params,
+                    url: '/meeting/ajax/meetingAction!getMeetingApplyPageList.shtml'
                 });
             },
 

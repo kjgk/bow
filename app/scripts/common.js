@@ -82,3 +82,5 @@ angular.module('common', [])
         };
     })
 ;
+
+var DateFormat = DateFormat.format;
