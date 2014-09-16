@@ -42,8 +42,18 @@ angular.module('front.meeting')
                     method: 'POST',
                     url: '/meeting/ajax/meetingAction!submitMeetingApply.shtml',
                     data: {
-                        meetingApplyInfo: meetingApply
+                        meetingApply: meetingApply
                     }
+                });
+            },
+
+            getMeetingApply: function (id) {
+                return $http({
+                    method: 'GET',
+                    params: {
+                        'meetingApply.id': id
+                    },
+                    url: '/meeting/ajax/meetingAction!getMeetingApplyInfo.shtml'
                 });
             }
         };

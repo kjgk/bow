@@ -36,7 +36,8 @@ angular.module('front.meeting', ['base'])
             })
             .state('meeting.apply.result', {
                 url: '/result/:id',
-                templateUrl: 'partials/front/meeting/apply-result.html'
+                templateUrl: 'partials/front/meeting/apply-result.html',
+                controller: 'MeetingApplyResultCtrl'
             });
 
         $urlRouterProvider
@@ -133,5 +134,13 @@ angular.module('front.meeting', ['base'])
                 $state.transitionTo('meeting.apply.list');
             });
         };
+    })
+
+    .controller('MeetingApplyResultCtrl', function ($scope, $state, MeetingService, MeetingApplyStatus) {
+
+        $scope.MeetingApplyStatus = MeetingApplyStatus;
+        MeetingService.getMeetingApply($state.params.id).then(function (response) {
+            $scope.meetingApply = response.data;
+        });
     })
 ;
