@@ -18,7 +18,7 @@
         <tr ng-repeat="x in grid.data">
             <td>{{x.applyTime|$date}}</td>
             <td>{{x.meetingName}}</td>
-            <td>{{getUseDateText(x)}}</td>
+            <td>{{x|useDateText}}</td>
             <td>
                 <span ng-show="x.status==2" class="alan">等待反馈…</span>
                 <a ng-show="x.status==3" href="#/meeting/apply/result/{{x.id}}" class="alv">预订成功【查看】</a>

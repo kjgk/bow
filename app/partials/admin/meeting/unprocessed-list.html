@@ -3,14 +3,11 @@
     <div class="nr_lan">
         <div class="nr_bq">未处理订单</div>
         <div class="nr_tj">日期查找:
-            <select name="select" id="select">
-                <option>2014-07-09</option>
-            </select>
+            <quick-datepicker ng-model='date'></quick-datepicker>
             预订人:
-            <input type="text" name="textfield" id="textfield" style="width:100px;">
-            <input type="submit" name="submit" id="submit" value="查询">
+            <input type="text" style="width:100px;" ng-model="applyUserName">
+            <button type="button" ng-click="query()">查询</button>
         </div>
-
 
         <table style="width: 98%;" cellpadding="10" cellspacing="0" align="center" class="biaoge4">
             <thead>
@@ -25,13 +22,13 @@
             </thead>
             <tbody>
             <tr ng-repeat="x in grid.data">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{x.applyTime|$date}}</td>
+                <td style="text-align: left;">{{x.remark}}</td>
+                <td>{{x.applyUserName}}</td>
+                <td>{{x.meetingName}}</td>
+                <td>{{x|useDateText}}</td>
                 <td class="caozuo">
-                    <img src="../images/btn_10.png" ng-click=""/>
+                    <img src="images/admin/btn_10.png" ng-click="process(x.id)"/>
                 </td>
             </tr>
             </tbody>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app', ['admin.meeting'])
-    .config(function ($httpProvider, $stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
+    .config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/meeting');
 
@@ -71,7 +71,6 @@ angular.module('app', ['admin.meeting'])
             };
         });
 
-        cfpLoadingBarProvider.includeSpinner = false;
     })
 
     .controller('MainCtrl', function ($scope, $rootScope) {

@@ -60,7 +60,7 @@ angular.module('front.meeting', ['base'])
             return ("" + state).indexOf(type) == -1;
         };
 
-        $scope.onlyAfterdays = function (d) {
+        $scope.onlyAfterDays = function (d) {
             return new Date().getTime() < (d.getTime() + 1000 * 60 * 60 * 24);
         };
 
@@ -86,24 +86,12 @@ angular.module('front.meeting', ['base'])
         };
 
         $scope.query();
-
-        $scope.getUseDateText = function (meetingApply) {
-            var type = {
-                1: '上午',
-                2: '下午',
-                3: '全天'
-            };
-            return DateFormat.date(new Date(meetingApply.useDateStart.time), 'yyyy-MM-dd')
-                + ' ' + type[meetingApply.useDateStartType]
-                + (meetingApply.useDateEnd ?
-                    (' 至 ' + DateFormat.date(new Date(meetingApply.useDateEnd.time), 'yyyy-MM-dd') + ' ' + type[meetingApply.useDateEndType] ) : '');
-        };
     })
 
     .controller('MeetingApplySubmitCtrl', function ($scope, $state, MeetingService) {
 
         $scope.meetingApply = {
-            applyUserName: '张三',
+            applyUserName: '张三',    // todo
             applyUserId: 1,
             useDateStartType: 3,
             useDateEndType: 3,
@@ -138,7 +126,7 @@ angular.module('front.meeting', ['base'])
                 remark: $scope.meetingApply.remark,
                 useDateStart: $scope.meetingApply.useDateStart,
                 useDateEnd: $scope.meetingApply.useDateEnd,
-                service: serviceList.join(',')
+                service: serviceList.join()
             };
 
             MeetingService.submitMeetingApply(meetingApply).then(function () {

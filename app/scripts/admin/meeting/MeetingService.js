@@ -84,6 +84,24 @@ angular.module('admin.meeting')
                         }
                     }
                 });
+            },
+
+            queryMeetingApplyList: function (params) {
+                return $http({
+                    method: 'GET',
+                    params: params,
+                    url: '/admin/meeting/ajax/meetingAdminAction!getMeetingApplyPageList.shtml'
+                });
+            },
+
+            getMeetingApply: function (id) {
+                return $http({
+                    method: 'GET',
+                    params: {
+                        'meetingApply.id': id
+                    },
+                    url: '/admin/meeting/ajax/meetingAdminAction!getMeetingApplyInfo.shtml'
+                });
             }
         };
         return me;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('base', ['common', 'ui.router', 'angular-loading-bar', 'angularFileUpload'])
+angular.module('base', ['common', 'angularFileUpload'])
 
     .directive('pagination', function () {
         return {

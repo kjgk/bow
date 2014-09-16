@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('base', ['common', 'ui.router', 'angular-loading-bar', 'ngQuickDate'])
+angular.module('base', ['common'])
 
     .directive('pagination', function () {
         return {

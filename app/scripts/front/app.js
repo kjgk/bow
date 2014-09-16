@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app', ['front.meeting'])
-    .config(function ($httpProvider, $stateProvider, $urlRouterProvider, cfpLoadingBarProvider, ngQuickDateDefaultsProvider) {
+    .config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/meeting');
 
@@ -71,19 +71,6 @@ angular.module('app', ['front.meeting'])
             };
         });
 
-        cfpLoadingBarProvider.includeSpinner = false;
-
-        ngQuickDateDefaultsProvider.set({
-            placeholder: '请选择日期',
-            labelFormat: 'yyyy-MM-dd',
-            dateFormat: 'yyyy-MM-dd',
-            disableTimepicker: true,
-            buttonIconHtml: '<i class="fa fa-calendar"></i>',
-            nextLinkHtml: '<i class="fa fa-lg fa-arrow-right"></i>',
-            prevLinkHtml: '<i class="fa fa-lg fa-arrow-left"></i>',
-            closeButtonHtml: '',
-            dayAbbreviations: ['日', '一', '二', '三', '四', '五', '六']
-        })
     })
 
     .controller('MainCtrl', function ($scope, $rootScope, $state) {

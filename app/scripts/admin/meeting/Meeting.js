@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('admin.meeting', ['base'])
+
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('meeting', {
@@ -19,6 +20,9 @@ angular.module('admin.meeting', ['base'])
                         if (state === 'meeting.create' || state === 'meeting.update') {
                             state = 'meeting.list';
                         }
+                        if (state === 'meeting.process') {
+                            state = 'meeting.unprocessed';
+                        }
                         return tab.state === state;
                     };
                 }
@@ -27,6 +31,11 @@ angular.module('admin.meeting', ['base'])
                 url: '/unprocessed',
                 templateUrl: 'partials/admin/meeting/unprocessed-list.html',
                 controller: 'MeetingUnprocessedListCtrl'
+            })
+            .state('meeting.process', {
+                url: '/process/:id',
+                templateUrl: 'partials/admin/meeting/process.html',
+                controller: 'MeetingProcessCtrl'
             })
             .state('meeting.processed', {
                 url: '/processed',
@@ -125,20 +134,46 @@ angular.module('admin.meeting', ['base'])
         };
     })
 
-    .controller('MeetingProcessedListCtrl', function ($scope, $timeout, $state, SimpleGrid, MeetingService) {
+    .controller('MeetingUnprocessedListCtrl', function ($scope, $timeout, $state, SimpleGrid, MeetingService, MeetingApplyStatus) {
 
-        $scope.grid = SimpleGrid(MeetingService.getMeetingList);
+        $scope.date = null;
+        $scope.grid = SimpleGrid(MeetingService.queryMeetingApplyList);
+        $scope.query = function () {
+            $scope.grid.query({
+                status: MeetingApplyStatus.SUBMIT,
+                applyUserName: $scope.applyUserName,
+                date: $scope.date == null ? undefined : DateFormat.date($scope.date, 'yyyy-MM-dd')
+            });
+        };
 
-        $scope.grid.query();
+        $scope.query();
+
+        $scope.process = function (id) {
+            $state.transitionTo('meeting.process', {id: id})
+        };
+    })
+
+    .controller('MeetingProcessCtrl', function ($scope, $state, MeetingService) {
+
+        MeetingService.getMeetingApply($state.params.id).then(function (response) {
+            $scope.meetingApply = response.data;
+        });
 
     })
 
-    .controller('MeetingUnprocessedListCtrl', function ($scope, $timeout, $state, SimpleGrid, MeetingService) {
+    .controller('MeetingProcessedListCtrl', function ($scope, $timeout, $state, SimpleGrid, MeetingService, MeetingApplyStatus) {
 
-        $scope.grid = SimpleGrid(MeetingService.getMeetingList);
+        $scope.date = null;
+        $scope.grid = SimpleGrid(MeetingService.queryMeetingApplyList);
+        $scope.query = function () {
+            $scope.grid.query({
+                status: [MeetingApplyStatus.SUCCESS, MeetingApplyStatus.FAIL].join(),
+                applyUserName: $scope.applyUserName,
+                date: $scope.date == null ? undefined : DateFormat.date($scope.date, 'yyyy-MM-dd')
+            });
+        };
 
-        $scope.grid.query();
-
+        $scope.query();
     })
 
     .controller('MeetingServiceCtrl', function ($scope, MeetingService) {
