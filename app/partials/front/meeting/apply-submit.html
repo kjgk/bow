@@ -19,14 +19,14 @@
             <tr>
                 <td align="right">使用时间：</td>
                 <td>
-                    <quick-datepicker ng-model='meetingApply.useDateStart'></quick-datepicker>
+                    <quick-datepicker ng-model='meetingApply.useDateStart' date-filter='onlyAfterDays'></quick-datepicker>
                     <select ng-model="meetingApply.useDateStartType">
                         <option value="3">全天</option>
                         <option value="1">上午</option>
                         <option value="2">下午</option>
                     </select>
                     至
-                    <quick-datepicker ng-model='meetingApply.useDateEnd' placeholder="跨日使用请选择"></quick-datepicker>
+                    <quick-datepicker ng-model='meetingApply.useDateEnd' date-filter='checkEndDate' placeholder="跨日使用请选择"></quick-datepicker>
                     <select ng-model="meetingApply.useDateEndType">
                         <option value="3">全天</option>
                         <option value="1">上午</option>

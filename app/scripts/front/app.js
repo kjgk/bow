@@ -79,7 +79,11 @@ angular.module('app', ['front.meeting'])
 
         $scope.back = function () {
             $state.transitionTo('meeting.overview');
-        }
+        };
+
+        $scope.onlyAfterDays = function (d) {
+            return new Date().getTime() < (d.getTime() + 1000 * 60 * 60 * 24);
+        };
 
         $scope.menuList = [
             {href: '', src: ['images/front/menu_01a.png', 'images/front/menu_01b.png']},

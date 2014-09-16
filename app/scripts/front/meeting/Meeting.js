@@ -61,10 +61,6 @@ angular.module('front.meeting', ['base'])
             return ("" + state).indexOf(type) == -1;
         };
 
-        $scope.onlyAfterDays = function (d) {
-            return new Date().getTime() < (d.getTime() + 1000 * 60 * 60 * 24);
-        };
-
         $scope.query();
     })
 
@@ -74,7 +70,6 @@ angular.module('front.meeting', ['base'])
             $scope.meeting = response.data;
         });
     })
-
 
     .controller('MeetingApplyListCtrl', function ($scope, $state, SimpleGrid, MeetingService) {
 
@@ -96,6 +91,7 @@ angular.module('front.meeting', ['base'])
             applyUserId: 1,
             useDateStartType: 3,
             useDateEndType: 3,
+            useDateStart: new Date(),
             meetingService: {}
         };
         MeetingService.getServiceList().then(function (response) {
@@ -109,6 +105,13 @@ angular.module('front.meeting', ['base'])
             $scope.meetingApply.meetingId = $scope.meeting.id;
             $scope.meetingApply.meetingName = $scope.meeting.name;
         });
+
+        $scope.checkEndDate = function (date) {
+            if (date == null) {
+                return true;
+            }
+            return  date.getTime() > $scope.meetingApply.useDateStart.getTime();
+        };
 
         $scope.submit = function () {
             var serviceList = [];
