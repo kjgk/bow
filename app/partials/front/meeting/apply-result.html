@@ -1,0 +1,45 @@
+<!--右边内容-->
+<div class="right_nr">
+    <div class="jp_tishi">温馨提示：如您需‘取消预订’，请及时拨打我们的服务电话：68887888.</div>
+    <div class="yj_top"></div>
+    <div class="hc_bg">
+        <table width="98%" border="0" align="center" cellpadding="10" cellspacing="0">
+            <tr>
+                <td ng-if="meetingApply.status==MeetingApplyStatus.SUCCESS" colspan="2" align="center" style="float: none" class="dc_font">
+                    <img src="images/front/yjjd_ok.png" alt=""/>&nbsp;&nbsp;&nbsp;&nbsp;您的预订已成功，请准时参会。
+                </td>
+                <td ng-if="meetingApply.status==MeetingApplyStatus.FAIL" colspan="2" align="center" style="float: none"  class="dc_font">
+                    <img src="images/front/yjjd_shuaka.png" alt=""/>&nbsp;&nbsp;&nbsp;&nbsp;抱歉，您预订的会场，已被其他人预订 。
+                </td>
+                <td ng-if="meetingApply.status==MeetingApplyStatus.SUBMIT" colspan="2" align="center" style="float: none"  class="dc_font">
+                    <img src="images/front/yjjd_shuaka.png" alt=""/>&nbsp;&nbsp;&nbsp;&nbsp;您的预订已提交 。
+                </td>
+            </tr>
+            <tr>
+                <td width="100" align="right">申请会场：</td>
+                <td>{{meetingApply.meetingName}}</td>
+            </tr>
+            <tr>
+                <td align="right">申&nbsp;请&nbsp;人：</td>
+                <td>{{meetingApply.applyUserName}}</td>
+            </tr>
+            <tr>
+                <td align="right">参会人数：</td>
+                <td>{{meetingApply.personNum+'人'}}</td>
+            </tr>
+            <tr>
+                <td align="right">使用时间：</td>
+                <td>{{meetingApply|useDateText}}</td>
+            </tr>
+            <tr>
+                <td align="right">配套服务：</td>
+                <td>{{meetingApply.meetingServiceList|meetingServiceText}}</td>
+            </tr>
+            <tr>
+                <td align="right" valign="top">备注说明：</td>
+                <td valign="top">{{meetingApply.remark}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="yj_down"></div>
+</div>
