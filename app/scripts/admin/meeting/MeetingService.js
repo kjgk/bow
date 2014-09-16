@@ -2,7 +2,7 @@
 
 angular.module('admin.meeting')
 
-    .factory('MeetingService', function ($q, $timeout, $http, localStorageService) {
+    .factory('MeetingService', function ($q, $timeout, $http) {
 
         var me = {
 
