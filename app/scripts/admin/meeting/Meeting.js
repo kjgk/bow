@@ -153,15 +153,28 @@ angular.module('admin.meeting', ['base'])
         };
     })
 
-    .controller('MeetingProcessCtrl', function ($scope, $state, MeetingService) {
+    .controller('MeetingProcessCtrl', function ($scope, $state, MeetingService, MeetingApplyStatus) {
 
         MeetingService.getMeetingApply($state.params.id).then(function (response) {
             $scope.meetingApply = response.data;
         });
 
+        $scope.applyResult = '';
+
+        $scope.MeetingApplyStatus = MeetingApplyStatus;
+
+        $scope.submit = function (status) {
+            MeetingService.processMeetingApply({
+                id: $state.params.id,
+                status: status,
+                applyResult: $scope.applyResult
+            }).then(function () {
+                $state.transitionTo('meeting.unprocessed');
+            });
+        }
     })
 
-    .controller('MeetingProcessedListCtrl', function ($scope, $timeout, $state, SimpleGrid, MeetingService, MeetingApplyStatus) {
+    .controller('MeetingProcessedListCtrl', function ($scope, $timeout, $sce, $state, SimpleGrid, MeetingService, MeetingApplyStatus) {
 
         $scope.date = null;
         $scope.grid = SimpleGrid(MeetingService.queryMeetingApplyList);
@@ -171,6 +184,12 @@ angular.module('admin.meeting', ['base'])
                 applyUserName: $scope.applyUserName,
                 date: $scope.date == null ? undefined : DateFormat.date($scope.date, 'yyyy-MM-dd')
             });
+        };
+        $scope.getStatusText = function (status) {
+            return {
+                3: $sce.trustAsHtml('<span class="alan">同意</span>'),
+                4: $sce.trustAsHtml('<span class="ahong">退回</span>')
+            }[status]
         };
 
         $scope.query();

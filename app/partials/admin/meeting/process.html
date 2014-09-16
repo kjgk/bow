@@ -23,11 +23,17 @@
                 <td style="text-align: left;">配套服务：{{meetingApply.meetingServiceList|meetingServiceText}}</td>
             </tr>
             <tr>
-                <td style="text-align: left;" class="ahong">驳回申请：
-                    <textarea name="textarea" id="textarea" style="width:99%; height:100px; margin-top: 8px;"></textarea></td>
+                <td style="text-align: left;" class="ahong">
+                    驳回申请：
+                    <textarea style="width:99%; height:100px; margin-top: 8px;" ng-model="applyResult"></textarea>
+                </td>
             </tr>
         </table>
-        <div class="fanye"><a href="#"><img src="images/admin/btn_15.png" style=" margin-right:20px;"/></a><a href="#"><img src="images/admin/btn_14.png"/></a></div><br>
+        <div class="fanye">
+            <a href="javascript:void(0)" ng-click="submit(MeetingApplyStatus.SUCCESS)"><img src="images/admin/btn_15.png" style=" margin-right:20px;"/></a>
+            <a href="javascript:void(0)" ng-click="submit(MeetingApplyStatus.FAIL)"><img src="images/admin/btn_14.png"/></a>
+        </div>
+        <br>
     </div>
 </div>
 <!--右边结束-->

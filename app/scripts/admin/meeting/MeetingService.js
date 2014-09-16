@@ -102,6 +102,16 @@ angular.module('admin.meeting')
                     },
                     url: '/admin/meeting/ajax/meetingAdminAction!getMeetingApplyInfo.shtml'
                 });
+            },
+
+            processMeetingApply: function (data) {
+                return $http({
+                    method: 'POST',
+                    url: '/admin/meeting/ajax/meetingAdminAction!processMeetingApply.shtml',
+                    data: {
+                        meetingApply: data
+                    }
+                });
             }
         };
         return me;

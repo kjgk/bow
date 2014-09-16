@@ -27,9 +27,7 @@
                 <td>{{x.applyUserName}}</td>
                 <td>{{x.meetingName}}</td>
                 <td>{{x|useDateText}}</td>
-                <td>
-
-                </td>
+                <td ng-bind-html="getStatusText(x.status)"></td>
             </tr>
             </tbody>
         </table>
