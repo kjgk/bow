@@ -5,7 +5,7 @@ angular.module('app', ['admin.meeting'])
 
         $urlRouterProvider.otherwise('/meeting');
 
-        $httpProvider.interceptors.push(function ($q, $location, $filter, cfpLoadingBar, contextPath) {
+        $httpProvider.interceptors.push(function ($q, $location, $filter, cfpLoadingBar) {
             return {
                 'request': function (request) {
 
@@ -69,9 +69,9 @@ angular.module('app', ['admin.meeting'])
 
     })
 
-    .controller('MainCtrl', function ($scope, $rootScope, $state, contextPath) {
+    .controller('MainCtrl', function ($scope, $rootScope, $state, PageContext) {
 
-        $rootScope.contextPath = contextPath;
+        $rootScope.contextPath = PageContext.path;
 
         $scope.onlyAfterDays = function (d) {
             return new Date().getTime() < (d.getTime() + 1000 * 60 * 60 * 24);

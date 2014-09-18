@@ -204,3 +204,8 @@ hr{ color:#ccc;border-bottom:1px solid #ccc;}
 table.quickdate-calendar td.disabled-date {
      color: #cfcfcf;
 }
+
+/*--------------------------------------form-validation--------------------------------------------------*/
+.validation {display: inline-block; margin: 0 0 0 4px;}
+.validation.validation-valid {color: #32cd54; font-size: 80%}
+.validation.validation-invalid {color: #df2929; font-size: 80%}

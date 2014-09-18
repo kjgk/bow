@@ -13,21 +13,19 @@
         <div class="clear"></div>
     </div>
 
-    <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-        <div title="{{x.name}}" ng-repeat="x in grid.data" class="hca">
-            <div class="hca_l"><img ng-src="{{contextPath + x.imgUrl}}"></div>
-            <div class="hca_r">
-                <p>{{x.name}}</p>
-                <ul>
-                    <li class="hc_btn1" ng-show="checkState(x.state, 1)"><a href="#/meeting/preview/{{x.id}}">上 午</a></li>
-                    <li class="hc_btn2" ng-show="!checkState(x.state, 1)"><a href="javascript:void(0)">上 午</a></li>
-                    <li class="hc_btn1" ng-show="checkState(x.state, 2)"><a href="#/meeting/preview/{{x.id}}">下 午</a></li>
-                    <li class="hc_btn2" ng-show="!checkState(x.state, 2)"><a href="javascript:void(0)">下 午</a></li>
-                </ul>
-            </div>
-            <div class="clear"></div>
+    <div title="{{x.name}}" ng-repeat="x in grid.data" class="hca">
+        <div class="hca_l"><img ng-src="{{contextPath + x.imgUrl}}"></div>
+        <div class="hca_r">
+            <p>{{x.name}}</p>
+            <ul>
+                <li class="hc_btn1" ng-show="checkState(x.state, 1)"><a href="#/meeting/preview/{{x.id}}">上 午</a></li>
+                <li class="hc_btn2" ng-show="!checkState(x.state, 1)"><a href="javascript:void(0)">上 午</a></li>
+                <li class="hc_btn1" ng-show="checkState(x.state, 2)"><a href="#/meeting/preview/{{x.id}}">下 午</a></li>
+                <li class="hc_btn2" ng-show="!checkState(x.state, 2)"><a href="javascript:void(0)">下 午</a></li>
+            </ul>
         </div>
-    </table>
+        <div class="clear"></div>
+    </div>
 
     <div pagination grid="grid"></div>
 </div>

@@ -11,34 +11,36 @@
 
 
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
-    <link rel="stylesheet" href="bower_components/ngQuickDate/dist/ng-quick-date.css" />
-    <link rel="stylesheet" href="bower_components/ngQuickDate/dist/ng-quick-date-default-theme.css" />
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css"/>
+    <link rel="stylesheet" href="bower_components/ngQuickDate/dist/ng-quick-date.css"/>
+    <link rel="stylesheet" href="bower_components/ngQuickDate/dist/ng-quick-date-default-theme.css"/>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:css({.tmp,app}) styles/admin.css -->
-    <link rel="stylesheet" type="text/css" href="styles/admin.css" />
+    <link rel="stylesheet" type="text/css" href="styles/admin.css"/>
     <!-- endbuild -->
+
+    <script>
+        PageContext = {path: '/lsc', currentUser: {id: 1000, name: 'kjgk'}};
+    </script>
 
 </head>
 <body ng-controller="MainCtrl">
-<!--[if lt IE 9]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
 
 <!--顶部开始-->
-<div class="top"><span class="left"><img src="images/admin/logo.png" width="435" height="62" /></span><span class="right jg_up">您好，<span class="ahong">系统管理员</span>&nbsp;|&nbsp;<a href="#" class="alan">安全退出</a></span></div>
+<div class="top"><span class="left"><img src="images/admin/logo.png" width="435" height="62"/></span><span class="right jg_up">您好，<span
+        class="ahong">系统管理员</span>&nbsp;|&nbsp;<a href="#" class="alan">安全退出</a></span></div>
 <!--顶部结束-->
 
 <!--菜单开始-->
 <div class="menu_zong">
     <div class="menu_left"></div>
     <div class="menu_center">
-        <a href="../admin/canteen/main.jsp" class="menu_da">食堂菜谱</a>
+        <a href="{{contextPath}}/admin/canteen/main.jsp" class="menu_da">食堂菜谱</a>
         <a href="#" class="menu_da">接待点餐</a>
-        <a href="../admin/flight/notDealFlightList.jsp" class="menu_da">机票预订</a>
+        <a href="{{contextPath}}/admin/flight/notDealFlightList.jsp" class="menu_da">机票预订</a>
         <a href="#/meeting" class="menu_db">会场预订</a>
         <a href="#" class="menu_da">意见征求</a>
     </div>
@@ -64,6 +66,8 @@
 <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
 <script src="bower_components/angular-i18n/angular-locale_zh-cn.js"></script>
 <script src="bower_components/jquery-dateFormat/dist/dateFormat.js"></script>
+<script src="bower_components/eventlistener-polyfill/EventListener.js"></script>
+<script src="bower_components/angular-validation/dist/angular-validation.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 

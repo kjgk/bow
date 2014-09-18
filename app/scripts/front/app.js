@@ -5,7 +5,7 @@ angular.module('app', ['front.meeting'])
 
         $urlRouterProvider.otherwise('/meeting');
 
-        $httpProvider.interceptors.push(function ($q, $location, $filter, cfpLoadingBar, contextPath) {
+        $httpProvider.interceptors.push(function ($q, $location, $filter, cfpLoadingBar) {
             return {
                 'request': function (request) {
 
@@ -69,9 +69,9 @@ angular.module('app', ['front.meeting'])
 
     })
 
-    .controller('MainCtrl', function ($scope, $rootScope, $state, contextPath) {
+    .controller('MainCtrl', function ($scope, $rootScope, $state, PageContext) {
 
-        $rootScope.contextPath = contextPath;
+        $rootScope.contextPath = PageContext.path;
 
         $scope.back = function () {
             $state.transitionTo('meeting.overview');
@@ -82,12 +82,12 @@ angular.module('app', ['front.meeting'])
         };
 
         $scope.menuList = [
-            {href: '../canteen/index.html', src: ['images/front/menu_01a.png', 'images/front/menu_01b.png']},
-            {href: '../canteen/weekDetail.jsp', src: ['images/front/menu_02a.png', 'images/front/menu_02b.png']},
+            {href: PageContext.path + '/canteen/index.html', src: ['images/front/menu_01a.png', 'images/front/menu_01b.png']},
+            {href: PageContext.path + '/canteen/weekDetail.jsp', src: ['images/front/menu_02a.png', 'images/front/menu_02b.png']},
             {href: '#', src: ['images/front/menu_03a.png', 'images/front/menu_03b.png']},
             {href: '#/meeting/overview', src: ['images/front/menu_04a.png', 'images/front/menu_04b.png']},
-            {href: '../flight/flightApplyList.jsp', src: ['images/front/menu_05a.png', 'images/front/menu_05b.png']},
-            {href: '../canteen/yijian.html', src: ['images/front/menu_06a.png', 'images/front/menu_06b.png']}
+            {href: PageContext.path + '/flight/flightApplyList.jsp', src: ['images/front/menu_05a.png', 'images/front/menu_05b.png']},
+            {href: PageContext.path + '/canteen/yijian.html', src: ['images/front/menu_06a.png', 'images/front/menu_06b.png']}
         ]
     })
 ;

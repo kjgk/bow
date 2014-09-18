@@ -6,6 +6,9 @@ var $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license']
 });
 
+var destDir = 'dist';
+//var destDir = '../WebRoot/dist';
+
 gulp.task('scripts', function () {
     return gulp.src('app/scripts/**/*.js')
         .pipe($.jshint())
@@ -52,7 +55,7 @@ gulp.task('html', ['scripts', 'partials'], function () {
         .pipe(assets.restore())
         .pipe($.useref())
         .pipe($.revReplace())
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest(destDir + ''))
         .pipe($.size());
 });
 
@@ -60,23 +63,13 @@ gulp.task('images', ['images:admin', 'images:front']);
 
 gulp.task('images:admin', function () {
     return gulp.src('app/images/admin/**/*')
-//        .pipe($.cache($.imagemin({
-//            optimizationLevel: 3,
-//            progressive: true,
-//            interlaced: true
-//        })))
-        .pipe(gulp.dest('dist/images/admin'))
+        .pipe(gulp.dest(destDir + '/images/admin'))
         .pipe($.size());
 });
 
 gulp.task('images:front', function () {
     return gulp.src('app/images/front/**/*')
-//        .pipe($.cache($.imagemin({
-//            optimizationLevel: 3,
-//            progressive: true,
-//            interlaced: true
-//        })))
-        .pipe(gulp.dest('dist/images/front'))
+        .pipe(gulp.dest(destDir + '/images/front'))
         .pipe($.size());
 });
 
@@ -84,12 +77,12 @@ gulp.task('fonts', function () {
     return gulp.src($.mainBowerFiles())
         .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
         .pipe($.flatten())
-        .pipe(gulp.dest('dist/fonts'))
+        .pipe(gulp.dest(destDir + '/fonts'))
         .pipe($.size());
 });
 
 gulp.task('clean', function () {
-    return gulp.src(['.tmp', 'dist'], { read: false }).pipe($.rimraf());
+    return gulp.src(['.tmp', destDir + ''], { read: false }).pipe($.rimraf());
 });
 
 gulp.task('build', ['html', 'partials', 'images', 'fonts']);

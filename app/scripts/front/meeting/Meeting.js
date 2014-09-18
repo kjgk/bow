@@ -84,11 +84,11 @@ angular.module('front.meeting', ['base'])
         $scope.query();
     })
 
-    .controller('MeetingApplySubmitCtrl', function ($scope, $state, MeetingService) {
+    .controller('MeetingApplySubmitCtrl', function ($scope, $state, MeetingService, PageContext) {
 
         $scope.meetingApply = {
-            applyUserName: '张三',    // todo
-            applyUserId: 1,
+            applyUserName: PageContext.currentUser.name,
+            applyUserId: PageContext.currentUser.id,
             useDateStartType: 3,
             useDateEndType: 3,
             useDateStart: new Date(),
@@ -133,8 +133,17 @@ angular.module('front.meeting', ['base'])
                 service: serviceList.join()
             };
 
-            MeetingService.submitMeetingApply(meetingApply).then(function () {
-                $state.transitionTo('meeting.apply.list');
+            MeetingService.submitMeetingApply(meetingApply).then(function (response) {
+                if (response.data.result == 1) {
+                    $state.transitionTo('meeting.apply.list');
+                }
+                if (response.data.result == 0) {
+
+                    var meetingApplyDate = response.data.meetingApplyDate;
+                    var text = "“" + DateFormat.date(new Date(meetingApplyDate.useDate.time), 'yyyy-MM-dd')
+                        + {1:'上午',2:'下午'}[meetingApplyDate.useDateType] + '”已经被预定，请重新选择。';
+                    alert(text);
+                }
             });
         };
     })

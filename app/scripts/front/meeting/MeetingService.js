@@ -2,7 +2,7 @@
 
 angular.module('front.meeting')
 
-    .factory('MeetingService', function ($q, $timeout, $http, contextPath) {
+    .factory('MeetingService', function ($q, $timeout, $http, PageContext) {
 
         var me = {
 
@@ -10,7 +10,7 @@ angular.module('front.meeting')
                 return $http({
                     method: 'GET',
                     params: {'meeting.id': id},
-                    url: contextPath + '/meeting/ajax/meetingAction!getMeetingInfo.shtml'
+                    url: PageContext.path + '/meeting/ajax/meetingAction!getMeetingInfo.shtml'
                 });
             },
 
@@ -18,14 +18,14 @@ angular.module('front.meeting')
                 return $http({
                     method: 'GET',
                     params: params,
-                    url: contextPath + '/meeting/ajax/meetingAction!getMeetingPageList.shtml'
+                    url: PageContext.path + '/meeting/ajax/meetingAction!getMeetingPageList.shtml'
                 });
             },
 
             getServiceList: function () {
                 return $http({
                     method: 'GET',
-                    url: contextPath + '/meeting/ajax/meetingAction!getMeetingServiceList.shtml'
+                    url: PageContext.path + '/meeting/ajax/meetingAction!getMeetingServiceList.shtml'
                 });
             },
 
@@ -33,14 +33,14 @@ angular.module('front.meeting')
                 return $http({
                     method: 'GET',
                     params: params,
-                    url: contextPath + '/meeting/ajax/meetingAction!getMeetingApplyPageList.shtml'
+                    url: PageContext.path + '/meeting/ajax/meetingAction!getMeetingApplyPageList.shtml'
                 });
             },
 
             submitMeetingApply: function (meetingApply) {
                 return $http({
                     method: 'POST',
-                    url: contextPath + '/meeting/ajax/meetingAction!submitMeetingApply.shtml',
+                    url: PageContext.path + '/meeting/ajax/meetingAction!submitMeetingApply.shtml',
                     data: {
                         meetingApply: meetingApply
                     }
@@ -53,7 +53,7 @@ angular.module('front.meeting')
                     params: {
                         'meetingApply.id': id
                     },
-                    url: contextPath + '/meeting/ajax/meetingAction!getMeetingApplyInfo.shtml'
+                    url: PageContext.path + '/meeting/ajax/meetingAction!getMeetingApplyInfo.shtml'
                 });
             }
         };

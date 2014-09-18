@@ -1,45 +1,42 @@
 <!--右边内容-->
 <div class="right_nr">
     <div class="nr_lan">
-        <form name="meetingForm">
-
+        <form name="meetingForm" role="form">
             <div class="nr_bq">{{title}}</div>
             <div class="nr_tj"></div>
             <div class="cp_list">
-                <ul>
-                    <li>会场名称:
-                        <input type="text" name="name" ng-model="meeting.name">
-                    </li>
-                    <li>容纳人数:
-                        <input type="text" name="personNum" ng-model="meeting.personNum">
-                        人
-                    </li>
-                    <li>所在楼层:
-                        <input type="text" name="floor" ng-model="meeting.floor">
-                        楼
+                <ul class="form-group">
+                    <li>
+                        <label>会场名称:</label>
+                        <input type="text" name="name" ng-model="meeting.name" validator="required" >
                     </li>
                     <li>
-                        <div style="float: left; margin-right: 8px;">会场说明:</div>
-                        <textarea rows="5" name="description" ng-model="meeting.description"></textarea>
+                        <label>容纳人数:</label>
+                        <input type="text" name="personNum" ng-model="meeting.personNum" validator="required, number" >
                     </li>
                     <li>
-                        <div style="margin-right: 8px;">
-                            上传图片:
-                            <input type="file" nv-file-select="" uploader="uploader"/>
-
-                            <span ng-show="uploader.isUploading"> 正在上传图片，请稍候... </span>
-                        </div>
-                        <div style="margin: 10px 0 0 72px;">
+                        <label>所在楼层:</label>
+                        <input type="text" name="floor" ng-model="meeting.floor" validator="required" >
+                    </li>
+                    <li>
+                        <label>会场说明:</label>
+                        <textarea rows="3" name="description" ng-model="meeting.description" ></textarea>
+                    </li>
+                    <li>
+                        <label>上传图片:</label>
+                        <input type="file" nv-file-select uploader="uploader"/>
+                        <span ng-show="uploader.isUploading"> 正在上传图片，请稍候... </span>
+                        <div style="margin: 10px 0 0 80px;">
                             <img ng-show="meeting.imgUrl" ng-src="{{contextPath + meeting.imgUrl}}" style="width: 200px; height: 180px; border: none;">
                         </div>
-
                     </li>
                 </ul>
             </div>
 
             <div class="fanye">
-                <input align="absmiddle" type="image" src="images/admin/btn_09.png" value="提交" ng-click="submit()">
+                <input type="image" src="images/admin/btn_09.png" validation-submit="meetingForm" ng-click="submit()">
             </div>
+
         </form>
     </div>
 </div>

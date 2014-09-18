@@ -3,51 +3,54 @@
     <div class="jp_tishi">温馨提示：如您需‘取消预订’，请及时拨打我们的服务电话：68887888.</div>
     <div class="yj_top"></div>
     <div class="hc_bg">
-        <table width="98%" border="0" align="center" cellpadding="10" cellspacing="0">
-            <tr>
-                <td width="80" align="right">申请会场：</td>
-                <td>{{meeting.name}}</td>
-            </tr>
-            <tr>
-                <td align="right">申&nbsp;请&nbsp;人：</td>
-                <td><input name="applyUserName" type="text" ng-model="meetingApply.applyUserName" readonly></td>
-            </tr>
-            <tr>
-                <td align="right">参会人数：</td>
-                <td><input name="personNum" type="text" ng-model="meetingApply.personNum"></td>
-            </tr>
-            <tr>
-                <td align="right">使用时间：</td>
-                <td>
-                    <quick-datepicker ng-model='meetingApply.useDateStart' date-filter='onlyAfterDays'></quick-datepicker>
-                    <select ng-model="meetingApply.useDateStartType">
-                        <option value="3">全天</option>
-                        <option value="1">上午</option>
-                        <option value="2">下午</option>
-                    </select>
-                    至
-                    <quick-datepicker ng-model='meetingApply.useDateEnd' date-filter='checkEndDate' placeholder="跨日使用请选择"></quick-datepicker>
-                    <select ng-model="meetingApply.useDateEndType">
-                        <option value="3">全天</option>
-                        <option value="1">上午</option>
-                        <option value="2">下午</option>
-                    </select>
-                    （当天使用，可不填后面日期。）
-                </td>
-            </tr>
-            <tr>
-                <td align="right">配套服务：</td>
-                <td>
-                    <input ng-repeat-start="x in serviceList" name="serviceName" ng-model="meetingApply.meetingService[x.id]" type="checkbox" id="{{'serviceName_' + x.id}}"><label ng-repeat-end for="{{'serviceName_' + x.id}}">{{x.serviceName}}&nbsp;&nbsp;</label>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" valign="top">备注说明：</td>
-                <td>
-                    <textarea name="remark" ng-model="meetingApply.remark" rows="3" style="width:99%;"></textarea></td>
-            </tr>
-        </table>
-        <div class="jp_btn"><a href="javascript:void(0)" ng-click="submit()"><img src="images/front/btn_07.png"/></a></div>
+        <form name="meetingApplyForm" role="form">
+            <table width="98%" border="0" align="center" cellpadding="10" cellspacing="0">
+                <tr>
+                    <td width="80" align="right">申请会场：</td>
+                    <td>{{meeting.name}}</td>
+                </tr>
+                <tr>
+                    <td align="right">申&nbsp;请&nbsp;人：</td>
+                    <td><input name="applyUserName" type="text" ng-model="meetingApply.applyUserName" readonly></td>
+                </tr>
+                <tr>
+                    <td align="right">参会人数：</td>
+                    <td><input name="personNum" type="text" ng-model="meetingApply.personNum" validator="required, number"></td>
+                </tr>
+                <tr>
+                    <td align="right">使用时间：</td>
+                    <td>
+                        <quick-datepicker ng-model='meetingApply.useDateStart' date-filter='onlyAfterDays'></quick-datepicker>
+                        <select ng-model="meetingApply.useDateStartType">
+                            <option value="3">全天</option>
+                            <option value="1">上午</option>
+                            <option value="2">下午</option>
+                        </select>
+                        至
+                        <quick-datepicker ng-model='meetingApply.useDateEnd' date-filter='checkEndDate' placeholder="跨日使用请选择"></quick-datepicker>
+                        <select ng-model="meetingApply.useDateEndType">
+                            <option value="3">全天</option>
+                            <option value="1">上午</option>
+                            <option value="2">下午</option>
+                        </select>
+                        （当天使用，可不填后面日期。）
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">配套服务：</td>
+                    <td>
+                        <input ng-repeat-start="x in serviceList" name="serviceName" ng-model="meetingApply.meetingService[x.id]" type="checkbox"
+                               id="{{'serviceName_' + x.id}}"><label ng-repeat-end for="{{'serviceName_' + x.id}}">{{x.serviceName}}&nbsp;&nbsp;</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" valign="top">备注说明：</td>
+                    <td>
+                        <textarea name="remark" ng-model="meetingApply.remark" rows="3" style="width:99%;"></textarea></td>
+                </tr>
+            </table>
+            <div class="jp_btn"><a href="javascript:void(0)" validation-submit="meetingApplyForm" ng-click="submit()"><img src="images/front/btn_07.png"/></a></div>
+        </form>
     </div>
     <div class="yj_down"></div>
 </div>

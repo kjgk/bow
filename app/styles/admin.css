@@ -211,3 +211,11 @@ hr{ color:#ccc; height:1px;}
 table.quickdate-calendar td.disabled-date {
     color: #cfcfcf;
 }
+
+/*--------------------------------------form-validation--------------------------------------------------*/
+.form-group li {}
+.form-group li label {position: absolute; min-width: 80px; }
+.form-group li input, .form-group li textarea, .form-group li select {min-width: 180px; margin: -1px 6px 0 80px;}
+.validation {display: inline-block; margin: 0 0 0 4px;}
+.validation.validation-valid {color: #32cd54; font-size: 80%}
+.validation.validation-invalid {color: #df2929; font-size: 80%}

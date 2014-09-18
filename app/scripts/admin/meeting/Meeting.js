@@ -81,9 +81,11 @@ angular.module('admin.meeting', ['base'])
         };
 
         $scope.deleteMeeting = function (x) {
-            MeetingService.deleteMeeting(x.id).then(function () {
-                $scope.grid.refresh();
-            });
+            if (window.confirm('确认删除？')) {
+                MeetingService.deleteMeeting(x.id).then(function () {
+                    $scope.grid.refresh();
+                });
+            }
         };
     })
 

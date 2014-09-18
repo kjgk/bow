@@ -31,7 +31,11 @@ function browserSyncInit(baseDir, files, browser) {
       baseDir: baseDir,
       middleware: proxyMiddleware
     },
-    browser: browser
+    browser: browser,
+    online: false/*,
+    open: true,
+    logLevel: "debug",
+    logConnections: true*/
   });
 
 }
