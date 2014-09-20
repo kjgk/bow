@@ -6,7 +6,7 @@ var browserSync = require('browser-sync');
 var httpProxy = require('http-proxy');
 
 /* This configuration allow you to configure browser sync to proxy your backend */
-var proxyTarget = 'http://localhost:8080/'; // The location of your backend
+var proxyTarget = 'http://localhost:8082/'; // The location of your backend
 
 var proxy = httpProxy.createProxyServer({
   target: proxyTarget

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('base', ['common', 'angularFileUpload'])
+angular.module('base', ['common', 'angularFileUpload', 'ui.tinymce'])
 
     .directive('pagination', function () {
         return {
